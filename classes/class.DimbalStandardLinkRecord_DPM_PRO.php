@@ -6,7 +6,7 @@
  * Time: 10:58 AM
  * To change this template use File | Settings | File Templates.
  */
-class DimbalStandardLinkRecord_DPM_FREE{
+class DimbalStandardLinkRecord_DPM_PRO{
 
     const TABLE_NAME = '';
     const COLUMN_A = '';
@@ -48,7 +48,7 @@ class DimbalStandardLinkRecord_DPM_FREE{
      */
     public static function getTableName(){
         global $wpdb;
-        $name = $wpdb->prefix . DIMBAL_CONST_DPM_FREE_SLUG . '-' . static::TABLE_NAME;
+        $name = $wpdb->prefix . DIMBAL_CONST_DPM_PRO_SLUG . '-' . static::TABLE_NAME;
         $name = str_replace("-","_",$name);
         return $name;
     }

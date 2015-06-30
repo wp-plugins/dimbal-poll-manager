@@ -6,7 +6,7 @@
  * Time: 10:01 AM
  * To change this template use File | Settings | File Templates.
  */
-class DimbalZone_DPM_FREE extends DimbalStandardObjectRecord_DPM_FREE{
+class DimbalZone_DPM_PRO extends DimbalStandardObjectRecord_DPM_PRO{
 
     public $text;
     public $items=array();
@@ -150,12 +150,12 @@ class DimbalZone_DPM_FREE extends DimbalStandardObjectRecord_DPM_FREE{
      */
     public function addItemIds($itemIds){
         foreach($itemIds as $itemId){
-            $link = new DimbalZoneItem_DPM_FREE($itemId, $this->id);
+            $link = new DimbalZoneItem_DPM_PRO($itemId, $this->id);
         }
     }
 
     public function getItemIds(){
-        $records = DimbalZoneItem_DPM_FREE::getAllForZoneId($this->id);
+        $records = DimbalZoneItem_DPM_PRO::getAllForZoneId($this->id);
         $itemIds = array();
         foreach($records as $record){
             $itemIds[] = $record['itemId'];
@@ -169,17 +169,17 @@ class DimbalZone_DPM_FREE extends DimbalStandardObjectRecord_DPM_FREE{
 
     public function removeItemIds($itemIds){
         foreach($itemIds as $itemId){
-            DimbalZoneItem_DPM_FREE::deleteSingleRelationship($itemId, $this->id);
+            DimbalZoneItem_DPM_PRO::deleteSingleRelationship($itemId, $this->id);
         }
     }
 
     public function removeAllItemIds(){
-        DimbalZoneItem_DPM_FREE::deleteAllForZoneId($this->id);
+        DimbalZoneItem_DPM_PRO::deleteAllForZoneId($this->id);
     }
 
     public static function getZonesForItem($itemId){
         $zones = array();
-        $records = DimbalZoneItem_DPM_FREE::getAllForItemId($itemId);
+        $records = DimbalZoneItem_DPM_PRO::getAllForItemId($itemId);
         foreach($records as $record){
             if(array_key_exists('zoneId', $record)){
                 $zones[] = $record['zoneId'];
@@ -189,7 +189,7 @@ class DimbalZone_DPM_FREE extends DimbalStandardObjectRecord_DPM_FREE{
     }
 
     public static function getZoneObjectsForItem($itemId){
-        $zoneIds = DimbalZoneItem_DPM_FREE::getAllForItemId($itemId);
+        $zoneIds = DimbalZoneItem_DPM_PRO::getAllForItemId($itemId);
         $objects = array();
         foreach($zoneIds as $zoneId){
             $zone = self::get($zoneId);
@@ -202,23 +202,23 @@ class DimbalZone_DPM_FREE extends DimbalStandardObjectRecord_DPM_FREE{
 
     public static function addZonesForItem($itemId, $zoneIds){
         foreach($zoneIds as $zoneId){
-            $link = new DimbalZoneItem_DPM_FREE($itemId, $zoneId);
+            $link = new DimbalZoneItem_DPM_PRO($itemId, $zoneId);
         }
     }
 
     public static function removeZonesForItem($itemId, $zoneIds){
         foreach($zoneIds as $zoneId){
-            DimbalZoneItem_DPM_FREE::deleteSingleRelationship($itemId, $zoneId);
+            DimbalZoneItem_DPM_PRO::deleteSingleRelationship($itemId, $zoneId);
         }
     }
 
     public static function removeAllZonesForItem($itemId){
-        DimbalZoneItem_DPM_FREE::deleteAllForItemId($itemId);
+        DimbalZoneItem_DPM_PRO::deleteAllForItemId($itemId);
     }
 
 
     public static function editorBuildOptions($object){
-        $zoneTypeId = self::getTypeIdByAppCode(DIMBAL_CONST_DPM_FREE_APP_CODE);
+        $zoneTypeId = self::getTypeIdByAppCode(DIMBAL_CONST_DPM_PRO_APP_CODE);
         $options=array();
         $options[]=array(
             'rowType'=>'SectionHeader',
@@ -226,53 +226,53 @@ class DimbalZone_DPM_FREE extends DimbalStandardObjectRecord_DPM_FREE{
         );
         $options[]=array(
             'title'=>'ID',
-            'objectType'=>DimbalEditor_DPM_FREE::OT_NUMERIC,
+            'objectType'=>DimbalEditor_DPM_PRO::OT_NUMERIC,
             'objectName'=>'id',
-            'formType'=>DimbalEditor_DPM_FREE::ET_TEXT_READONLY,
+            'formType'=>DimbalEditor_DPM_PRO::ET_TEXT_READONLY,
             'value'=>($object)?$object->id:'',
             'help'=>''
         );
         $typeIdToUse = ($object)?$object->typeId:$zoneTypeId;
         $options[]=array(
             'title'=>'Zone Type (HIDDEN)',
-            'objectType'=>DimbalEditor_DPM_FREE::OT_NUMERIC,
+            'objectType'=>DimbalEditor_DPM_PRO::OT_NUMERIC,
             'objectName'=>'typeId',
-            'formType'=>DimbalEditor_DPM_FREE::ET_HIDDEN,
+            'formType'=>DimbalEditor_DPM_PRO::ET_HIDDEN,
             'value'=>$typeIdToUse,
             'help'=>'The Type of Zone.  Once created Zones cannot change type.'
         );
         $options[]=array(
             'title'=>'Zone Type',
-            'objectType'=>DimbalEditor_DPM_FREE::OT_SKIP,
+            'objectType'=>DimbalEditor_DPM_PRO::OT_SKIP,
             'objectName'=>'skip',
-            'formType'=>DimbalEditor_DPM_FREE::ET_HTML,
-            'value'=>DimbalZone_DPM_FREE::getFormattedTypeString($typeIdToUse),
+            'formType'=>DimbalEditor_DPM_PRO::ET_HTML,
+            'value'=>DimbalZone_DPM_PRO::getFormattedTypeString($typeIdToUse),
             'help'=>'The Type of Zone.  Once created Zones cannot change type.'
         );
         $options[]=array(
             'title'=>'Text Name',
-            'objectType'=>DimbalEditor_DPM_FREE::OT_STRING,
+            'objectType'=>DimbalEditor_DPM_PRO::OT_STRING,
             'objectName'=>'text',
-            'formType'=>DimbalEditor_DPM_FREE::ET_TEXT,
+            'formType'=>DimbalEditor_DPM_PRO::ET_TEXT,
             'value'=>($object)?$object->text:'',
             'help'=>'The Name of the Zone',
             'size'=>100,
         );
         $options[]=array(
             'title'=>'Show Name',
-            'objectType'=>DimbalEditor_DPM_FREE::OT_BOOLEAN,
+            'objectType'=>DimbalEditor_DPM_PRO::OT_BOOLEAN,
             'objectName'=>'showTitle',
-            'formType'=>DimbalEditor_DPM_FREE::ET_CHECKBOX,
-            'value'=>($object)?$object->showTitle:DimbalSetting_DPM_FREE::getSetting('dpm_default_show_legend'),
+            'formType'=>DimbalEditor_DPM_PRO::ET_CHECKBOX,
+            'value'=>($object)?$object->showTitle:DimbalSetting_DPM_PRO::getSetting('dpm_default_show_legend'),
             'help'=>'If Checked, will display the Zone Name above the Item (if item type supports this feature)',
         );
         $options[]=array(
             'title'=>'Status',
-            'objectType'=>DimbalEditor_DPM_FREE::OT_NUMERIC,
+            'objectType'=>DimbalEditor_DPM_PRO::OT_NUMERIC,
             'objectName'=>'status',
-            'formType'=>DimbalEditor_DPM_FREE::ET_MENU_STATUS,
-            'formOptions'=>DimbalStandardObjectRecord_DPM_FREE::getAllStatusMarks(),
-            'value'=>($object)?$object->status:DimbalStandardObjectRecord_DPM_FREE::STATUS_ACTIVE,
+            'formType'=>DimbalEditor_DPM_PRO::ET_MENU_STATUS,
+            'formOptions'=>DimbalStandardObjectRecord_DPM_PRO::getAllStatusMarks(),
+            'value'=>($object)?$object->status:DimbalStandardObjectRecord_DPM_PRO::STATUS_ACTIVE,
             'help'=>'Select whether this Poll is active or inactive'
         );
         $options[]=array(
@@ -280,28 +280,28 @@ class DimbalZone_DPM_FREE extends DimbalStandardObjectRecord_DPM_FREE{
             'title'=>'Item Selection',
         );
         switch($zoneTypeId){
-            case DimbalZone_DPM_FREE::TYPE_DPM:
-                $polls = DimbalPollQuestion_DPM_FREE::getAll(0,1000);
-                $pollsArray = DimbalStandardObjectRecord_DPM_FREE::getBasicArrayFromObjects($polls);
+            case DimbalZone_DPM_PRO::TYPE_DPM:
+                $polls = DimbalPollQuestion_DPM_PRO::getAll(0,1000);
+                $pollsArray = DimbalStandardObjectRecord_DPM_PRO::getBasicArrayFromObjects($polls);
                 $options[]=array(
                     'title'=>'Items',
-                    'objectType'=>DimbalEditor_DPM_FREE::OT_ARRAY,
+                    'objectType'=>DimbalEditor_DPM_PRO::OT_ARRAY,
                     'objectName'=>'items',
                     'formOptions'=>$pollsArray,
-                    'formType'=>DimbalEditor_DPM_FREE::ET_ZONE_ITEM_PICKER,
+                    'formType'=>DimbalEditor_DPM_PRO::ET_ZONE_ITEM_PICKER,
                     'value'=>($object)?$object->getItemIds():'',
                     'help'=>'Select the Polls that should be included in this Zone'
                 );
                 break;
-            case DimbalZone_DPM_FREE::TYPE_DTM:
+            case DimbalZone_DPM_PRO::TYPE_DTM:
                 $tips = DimbalTipItem::getAll(0,1000);
-                $tipsArray = DimbalStandardObjectRecord_DPM_FREE::getBasicArrayFromObjects($tips);
+                $tipsArray = DimbalStandardObjectRecord_DPM_PRO::getBasicArrayFromObjects($tips);
                 $options[]=array(
                     'title'=>'Items',
-                    'objectType'=>DimbalEditor_DPM_FREE::OT_ARRAY,
+                    'objectType'=>DimbalEditor_DPM_PRO::OT_ARRAY,
                     'objectName'=>'items',
                     'formOptions'=>$tipsArray,
-                    'formType'=>DimbalEditor_DPM_FREE::ET_ZONE_ITEM_PICKER,
+                    'formType'=>DimbalEditor_DPM_PRO::ET_ZONE_ITEM_PICKER,
                     'value'=>($object)?$object->getItemIds():'',
                     'help'=>'Select the Tips that should be included in this Zone'
                 );
@@ -314,34 +314,34 @@ class DimbalZone_DPM_FREE extends DimbalStandardObjectRecord_DPM_FREE{
         );
         $options[]=array(
             'title'=>'Created Date',
-            'objectType'=>DimbalEditor_DPM_FREE::OT_DATE,
+            'objectType'=>DimbalEditor_DPM_PRO::OT_DATE,
             'objectName'=>'createdDate',
-            'formType'=>DimbalEditor_DPM_FREE::ET_TEXT_READONLY,
-            'value'=>($object)?DimbalStandardObjectRecord_DPM_FREE::formatDate($object->createdDate):'',
+            'formType'=>DimbalEditor_DPM_PRO::ET_TEXT_READONLY,
+            'value'=>($object)?DimbalStandardObjectRecord_DPM_PRO::formatDate($object->createdDate):'',
             'help'=>'The date the Zone was created on'
         );
         $options[]=array(
             'title'=>'Last Hit Date',
-            'objectType'=>DimbalEditor_DPM_FREE::OT_DATE,
+            'objectType'=>DimbalEditor_DPM_PRO::OT_DATE,
             'objectName'=>'lastHitDate',
-            'formType'=>DimbalEditor_DPM_FREE::ET_TEXT_READONLY,
-            'value'=>($object)?DimbalStandardObjectRecord_DPM_FREE::formatDate($object->lastHitDate,"M j, Y, g:i a"):'',
+            'formType'=>DimbalEditor_DPM_PRO::ET_TEXT_READONLY,
+            'value'=>($object)?DimbalStandardObjectRecord_DPM_PRO::formatDate($object->lastHitDate,"M j, Y, g:i a"):'',
             'help'=>'The date the poll was last accessed.'
         );
         $options[]=array(
             'title'=>'Current Hit Count',
-            'objectType'=>DimbalEditor_DPM_FREE::OT_NUMERIC,
+            'objectType'=>DimbalEditor_DPM_PRO::OT_NUMERIC,
             'objectName'=>'hitCount',
-            'formType'=>DimbalEditor_DPM_FREE::ET_TEXT,
+            'formType'=>DimbalEditor_DPM_PRO::ET_TEXT,
             'value'=>($object)?$object->hitCount:'',
             'help'=>'The current number of hits (displays) the Poll has received',
             'size'=>10,
         );
         $options[]=array(
             'title'=>'Additional HTML',
-            'objectType'=>DimbalEditor_DPM_FREE::OT_STRING,
+            'objectType'=>DimbalEditor_DPM_PRO::OT_STRING,
             'objectName'=>'additionalHtml',
-            'formType'=>DimbalEditor_DPM_FREE::ET_TEXTAREA,
+            'formType'=>DimbalEditor_DPM_PRO::ET_TEXTAREA,
             'size'=>100,
             'value'=>($object)?$object->additionalHtml:'',
             'help'=>'You can optionally include any custom html underneath the Item. (if item type supports this feature)'
@@ -363,8 +363,8 @@ class DimbalZone_DPM_FREE extends DimbalStandardObjectRecord_DPM_FREE{
             );
             $row[] = array(
                 'title'=>'Edit',
-                'url'=>Dimbal_DPM_FREE::getPageUrl(DIMBAL_CONST_DPM_FREE_PAGE_ZONES, array('id'=>$object->id, 'typeId'=>$object->typeId)),
-                'image'=>DIMBAL_CONST_DPM_FREE_URL_IMAGES.'/page_edit.png',
+                'url'=>Dimbal_DPM_PRO::getPageUrl(DIMBAL_CONST_DPM_PRO_PAGE_ZONES, array('id'=>$object->id, 'typeId'=>$object->typeId)),
+                'image'=>DIMBAL_CONST_DPM_PRO_URL_IMAGES.'/page_edit.png',
                 'image_tooltip'=>'Edit Zone',
             );
             $row[] = array(
@@ -379,7 +379,7 @@ class DimbalZone_DPM_FREE extends DimbalStandardObjectRecord_DPM_FREE{
             $row[] = array(
                 'title'=>'Report',
                 'url'=>'reports.php?pollId='.$object->id,
-                'image'=>DIMBAL_CONST_DPM_FREE_URL_IMAGES.'/document_layout.png',
+                'image'=>DIMBAL_CONST_DPM_PRO_URL_IMAGES.'/document_layout.png',
                 'image_tooltip'=>'Build Report',
             );
             */
@@ -391,13 +391,13 @@ class DimbalZone_DPM_FREE extends DimbalStandardObjectRecord_DPM_FREE{
                 $row[] = array(
                     'title'=>'Preview',
                     'url'=>$object->getPreviewUrl(),
-                    'image'=>DIMBAL_CONST_DPM_FREE_URL_IMAGES.'/magnifier.png',
+                    'image'=>DIMBAL_CONST_DPM_PRO_URL_IMAGES.'/magnifier.png',
                     'image_tooltip'=>'Preview Zone',
                 );
             }
             $row[] = array(
                 'title'=>'Created Date',
-                'content'=>DimbalStandardObjectRecord_DPM_FREE::formatDate($object->createdDate),
+                'content'=>DimbalStandardObjectRecord_DPM_PRO::formatDate($object->createdDate),
             );
             $row[] = array(
                 'title'=>'Shortcode',
@@ -409,8 +409,8 @@ class DimbalZone_DPM_FREE extends DimbalStandardObjectRecord_DPM_FREE{
             );
             $row[] = array(
                 'title'=>'Delete',
-                'url'=>Dimbal_DPM_FREE::getPageUrl(DIMBAL_CONST_DPM_FREE_PAGE_ZONES, array('delete'=>1,'id'=>$object->id, 'typeId'=>$object->typeId)),
-                'image'=>DIMBAL_CONST_DPM_FREE_URL_IMAGES.'/delete.png',
+                'url'=>Dimbal_DPM_PRO::getPageUrl(DIMBAL_CONST_DPM_PRO_PAGE_ZONES, array('delete'=>1,'id'=>$object->id, 'typeId'=>$object->typeId)),
+                'image'=>DIMBAL_CONST_DPM_PRO_URL_IMAGES.'/delete.png',
                 'image_tooltip'=>'Delete Poll',
             );
             $rows[]=$row;
@@ -457,14 +457,14 @@ class DimbalZone_DPM_FREE extends DimbalStandardObjectRecord_DPM_FREE{
     }
 
     public function getPreviewUrl(){
-        return Dimbal_DPM_FREE::getPageUrl(DIMBAL_CONST_DPM_FREE_PAGE_PREVIEW, array('ac'=>'3','zoneId'=>$this->id));
+        return Dimbal_DPM_PRO::getPageUrl(DIMBAL_CONST_DPM_PRO_PAGE_PREVIEW, array('ac'=>'3','zoneId'=>$this->id));
     }
 
     public function getDisplayCode(){
         $html = '';
         switch($this->typeId){
             case self::TYPE_DPM:
-                $html .= '<div class="DIMBAL_CONST_DPM_FREE_SLUG-WidgetWrapper" dpm_zone="'.$this->id.'">';
+                $html .= '<div class="DIMBAL_CONST_DPM_PRO_SLUG-WidgetWrapper" dpm_zone="'.$this->id.'">';
                 //$html .= '<a href="http://www.dimbal.com">Loading the Dimbal Poll Manager</a>';
                 $html .= '</div>';
                 break;
