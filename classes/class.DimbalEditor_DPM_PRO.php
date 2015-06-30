@@ -6,7 +6,7 @@
  * Time: 4:44 PM
  * To change this template use File | Settings | File Templates.
  */
-class DimbalEditor_DPM_FREE{
+class DimbalEditor_DPM_PRO{
 
     // Object Types
     const OT_BOOLEAN=1;
@@ -62,13 +62,13 @@ class DimbalEditor_DPM_FREE{
 
         $html = '';
 
-        //Dimbal_DPM_FREE::logMessage("Request Vars: ".print_r($_REQUEST, true));
+        //Dimbal_DPM_PRO::logMessage("Request Vars: ".print_r($_REQUEST, true));
 
         // See if the editor was passed
-        $editor = Dimbal_DPM_FREE::getRequestVarIfExists('formEditor');
+        $editor = Dimbal_DPM_PRO::getRequestVarIfExists('formEditor');
 
         // See if a new was passed ofr an id
-        $id = Dimbal_DPM_FREE::getRequestVarIfExists('id');
+        $id = Dimbal_DPM_PRO::getRequestVarIfExists('id');
 
         if(empty($editor) && empty($id)){
             // Both Editor Submit and Editor Display are empty - we do not belong in here
@@ -89,18 +89,18 @@ class DimbalEditor_DPM_FREE{
         $options = $class::editorBuildOptions($object);
         if($object && isset($_REQUEST['formEditor'])){
             // Save the changes but do not build the editor
-            $object = DimbalEditor_DPM_FREE::saveEditorChanges($object,$options,$_REQUEST);
+            $object = DimbalEditor_DPM_PRO::saveEditorChanges($object,$options,$_REQUEST);
             if($forceEditor){
                 // Build the editor again (such as in Free Zones)
                 $object = $class::get($id);
                 $options = $class::editorBuildOptions($object);
-                $html .= DimbalEditor_DPM_FREE::buildEditor($options, '#');
+                $html .= DimbalEditor_DPM_PRO::buildEditor($options, '#');
             }else{
                 unset($_REQUEST['id']);
             }
         }else{
             // Build the editor because the form was not shown
-            $html .= DimbalEditor_DPM_FREE::buildEditor($options, '#');
+            $html .= DimbalEditor_DPM_PRO::buildEditor($options, '#');
         }
 
         return $html;
@@ -283,7 +283,7 @@ class DimbalEditor_DPM_FREE{
             case self::ET_MENU_STATUS:
                 $html .= '<select id="'.$options['objectName'].'" name="'.$options['objectName'].'"> <label for="'.$options['objectName'].'"></label>';
                 $html .= '<option value="">--</option>';
-                foreach(DimbalStandardObjectRecord_DPM_FREE::getAllStatusMarks() as $key=>$value){
+                foreach(DimbalStandardObjectRecord_DPM_PRO::getAllStatusMarks() as $key=>$value){
                     $selected = '';
                     if($key==$options['value']){ $selected=' selected="selected"'; }
                     $html .= '<option value="'.$key.'"'.$selected.'>'.$value.'</option>';
@@ -314,14 +314,14 @@ class DimbalEditor_DPM_FREE{
                 //$html .= '<script>';
                 //$html .= '$(function() { $( "#'.$options['objectName'].'" ).datepicker(); });';
                 //$html .= '</script>';
-                $html .= '<input type="text" id="'.$options['objectName'].'" class="datePicker" name="'.$options['objectName'].'" value="'.DimbalStandardObjectRecord_DPM_FREE::formatJQueryDate($options['value']).'" />';
+                $html .= '<input type="text" id="'.$options['objectName'].'" class="datePicker" name="'.$options['objectName'].'" value="'.DimbalStandardObjectRecord_DPM_PRO::formatJQueryDate($options['value']).'" />';
                 $html .= ' '.self::renderAjaxInsertTodaysDate($options['objectName']).' <label for="'.$options['objectName'].'"></label>';
                 break;
             case self::ET_DATE_TIME:
                 //$html .= '<script>';
                 //$html .= '$(function() { $( "#'.$options['objectName'].'" ).dateTimepicker(); });';
                 //$html .= '</script>';
-                $html .= '<input type="text" id="'.$options['objectName'].'" class="dateTimePicker" name="'.$options['objectName'].'" value="'.DimbalStandardObjectRecord_DPM_FREE::formatJQueryDateTime($options['value']).'" />';
+                $html .= '<input type="text" id="'.$options['objectName'].'" class="dateTimePicker" name="'.$options['objectName'].'" value="'.DimbalStandardObjectRecord_DPM_PRO::formatJQueryDateTime($options['value']).'" />';
                 $html .= ' '.self::renderAjaxInsertTodaysDate($options['objectName']).' <label for="'.$options['objectName'].'"></label>';
                 break;
             case self::ET_CHECKBOX:
@@ -353,10 +353,10 @@ class DimbalEditor_DPM_FREE{
                 // Specific to DPM
                 foreach($options['formOptions'] as $key=>$value){
                     $checked = '';
-                    if($value->status == DimbalStandardObjectRecord_DPM_FREE::STATUS_ACTIVE){ $checked=' checked="checked"'; }
-                    $html .= '<div id="'.$options['objectName'].$key.'_div"><input type="checkbox" name="'.$options['objectName'].$key.'_chk"'.$checked.'> <input type="text" name="'.$options['objectName'].$key.'_txt" value="'.$value->text.'" /> <input type="button" name="'.$options['objectName'].$key.'_dlt" value="Delete" onClick="javascript:dimbalPoll_DPM_FREE.confirmChoiceDelete(\''.$options['objectName'].$key.'\')" /></div>';
+                    if($value->status == DimbalStandardObjectRecord_DPM_PRO::STATUS_ACTIVE){ $checked=' checked="checked"'; }
+                    $html .= '<div id="'.$options['objectName'].$key.'_div"><input type="checkbox" name="'.$options['objectName'].$key.'_chk"'.$checked.'> <input type="text" name="'.$options['objectName'].$key.'_txt" value="'.$value->text.'" /> <input type="button" name="'.$options['objectName'].$key.'_dlt" value="Delete" onClick="javascript:dimbalPoll_DPM_PRO.confirmChoiceDelete(\''.$options['objectName'].$key.'\')" /></div>';
                 }
-                $html .= '<div id="addMoreRows'.$options['objectName'].'"><a href="javascript:dimbalPoll_DPM_FREE.addBlankRow(\''.$options['objectName'].'\', \'addMoreRows'.$options['objectName'].'\');">add choice</a></div>';
+                $html .= '<div id="addMoreRows'.$options['objectName'].'"><a href="javascript:dimbalPoll_DPM_PRO.addBlankRow(\''.$options['objectName'].'\', \'addMoreRows'.$options['objectName'].'\');">add choice</a></div>';
                 break;
             case self::ET_RADIO:
                 $first = true;
@@ -412,7 +412,7 @@ class DimbalEditor_DPM_FREE{
                     case self::OT_DATE:
                         $enteredDate = $requestVars[$option['objectName']];
                         if(strlen(trim($enteredDate))>1 || $option['objectName']=="createdDate"){
-                            $value = DimbalStandardObjectRecord_DPM_FREE::formatIncomingDateString($requestVars[$option['objectName']]);
+                            $value = DimbalStandardObjectRecord_DPM_PRO::formatIncomingDateString($requestVars[$option['objectName']]);
                         }else{
                             $value = "";
                         }
@@ -501,7 +501,7 @@ class DimbalEditor_DPM_FREE{
                         case self::OT_DATE:
                             $enteredDate = $requestVars[$option['objectName']];
                             if(strlen(trim($enteredDate))>1 || $option['objectName']=="createdDate"){
-                                $value = DimbalStandardObjectRecord_DPM_FREE::formatIncomingDateString($requestVars[$option['objectName']]);
+                                $value = DimbalStandardObjectRecord_DPM_PRO::formatIncomingDateString($requestVars[$option['objectName']]);
                             }else{
                                 $value = "";
                             }
@@ -511,7 +511,7 @@ class DimbalEditor_DPM_FREE{
                                 case self::ET_MENU_STATUS:
                                     $value = $requestVars[$option['objectName']];
                                     if(!is_numeric($value) || empty($value)){
-                                        $value=DimbalStandardObjectRecord_DPM_FREE::STATUS_ACTIVE;
+                                        $value=DimbalStandardObjectRecord_DPM_PRO::STATUS_ACTIVE;
                                     }
                                     $processValue = true;
                                     break;
@@ -598,8 +598,8 @@ class DimbalEditor_DPM_FREE{
                                             $zones[] = $key;
                                         }
                                     }
-                                    DimbalZone_DPM_FREE::removeAllZonesForItem($object->id);
-                                    DimbalZone_DPM_FREE::addZonesForItem($object->id, $zones);
+                                    DimbalZone_DPM_PRO::removeAllZonesForItem($object->id);
+                                    DimbalZone_DPM_PRO::addZonesForItem($object->id, $zones);
                                     $value = false;		//Skip the save below
                                     break;
                                 case self::ET_TEXT_ADDITIONAL:
@@ -647,11 +647,11 @@ class DimbalEditor_DPM_FREE{
                                             $fieldString = $option['objectName'].$key.'_txt';
                                             if(array_key_exists($fieldString, $requestVars)){
                                                 $chkString = $option['objectName'].$key.'_chk';
-                                                $status = DimbalStandardObjectRecord_DPM_FREE::STATUS_INACTIVE;
+                                                $status = DimbalStandardObjectRecord_DPM_PRO::STATUS_INACTIVE;
                                                 if(array_key_exists($chkString,$requestVars)){
                                                     $value = $requestVars[$chkString];
                                                     if($value == 'checked' || $value=='on'){
-                                                        $status = DimbalStandardObjectRecord_DPM_FREE::STATUS_ACTIVE;
+                                                        $status = DimbalStandardObjectRecord_DPM_PRO::STATUS_ACTIVE;
                                                     }elseif($value == 'deleted'){
                                                         $status = "DELETE";
                                                     }
@@ -667,11 +667,11 @@ class DimbalEditor_DPM_FREE{
                                         //Logger::debug("Field String :: ".$fieldString);
                                         if(array_key_exists($fieldString,$requestVars)){
                                             $chkString = $option['objectName'].'_blankChk_'.$i;
-                                            $status = DimbalStandardObjectRecord_DPM_FREE::STATUS_INACTIVE;
+                                            $status = DimbalStandardObjectRecord_DPM_PRO::STATUS_INACTIVE;
                                             if(array_key_exists($chkString,$requestVars)){
                                                 $value = $requestVars[$chkString];
                                                 if($value == 'checked' || $value=='on'){
-                                                    $status = DimbalStandardObjectRecord_DPM_FREE::STATUS_ACTIVE;
+                                                    $status = DimbalStandardObjectRecord_DPM_PRO::STATUS_ACTIVE;
                                                 }
                                             }
                                             $val = $requestVars[$fieldString];
@@ -735,7 +735,7 @@ class DimbalEditor_DPM_FREE{
             }
 
             $object->save();
-            Dimbal_DPM_FREE::addUserMessage('Object Saved Successfully');
+            Dimbal_DPM_PRO::addUserMessage('Object Saved Successfully');
         }catch(Exception $e){
             error_log("Exception Caught: ".$e->getMessage());
         }
@@ -751,7 +751,7 @@ class DimbalEditor_DPM_FREE{
         }
         $html = "<a href='";
         foreach($formIds as $formId){
-            $html .= "javascript:setFormValue(\"".$formId."\",\"".DimbalStandardObjectRecord_DPM_FREE::formatJQueryDate(time())."\");";
+            $html .= "javascript:setFormValue(\"".$formId."\",\"".DimbalStandardObjectRecord_DPM_PRO::formatJQueryDate(time())."\");";
         }
         $html .= "'>insert today</a>";
         return $html;

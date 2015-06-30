@@ -6,7 +6,7 @@
  * Time: 5:49 PM
  * To change this template use File | Settings | File Templates.
  */
-class DimbalManager_DPM_FREE{
+class DimbalManager_DPM_PRO{
 
     public static function buildManagerTable($rows){
         //Logger::debug("Manager Table Rows: ".print_r($rows,true));
@@ -31,7 +31,7 @@ class DimbalManager_DPM_FREE{
         $rand = rand(0,99999);
         $html = '';
         if(count($rows)==0){
-            $html .= '<p style="text-align:center;"><img src="'.DIMBAL_CONST_DPM_FREE_URL_IMAGES.'/no_saved_objects.png" /></p>';
+            $html .= '<p style="text-align:center;"><img src="'.DIMBAL_CONST_DPM_PRO_URL_IMAGES.'/no_saved_objects.png" /></p>';
         }else{
 
             //Get Headers:

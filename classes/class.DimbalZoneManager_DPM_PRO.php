@@ -6,7 +6,7 @@
  * Time: 11:26 PM
  * To change this template use File | Settings | File Templates.
  */
-class DimbalZoneManager_DPM_FREE{
+class DimbalZoneManager_DPM_PRO{
 
     // General Settings and Constants
 
@@ -18,8 +18,8 @@ class DimbalZoneManager_DPM_FREE{
         $charset_collate = $wpdb->get_charset_collate();
 
         // Setup the Poll Question table
-        $zone_table_name = DimbalZone_DPM_FREE::getTableName();
-        $zone_item_table_name = DimbalZoneItem_DPM_FREE::getTableName();
+        $zone_table_name = DimbalZone_DPM_PRO::getTableName();
+        $zone_item_table_name = DimbalZoneItem_DPM_PRO::getTableName();
         $sql = "
             CREATE TABLE $zone_table_name (
                 id int(11) NOT NULL AUTO_INCREMENT,
@@ -47,7 +47,7 @@ class DimbalZoneManager_DPM_FREE{
             'zone_id' => 0
         ), $atts ) );
 
-        $zone = DimbalZone_DPM_FREE::get($zone_id);
+        $zone = DimbalZone_DPM_PRO::get($zone_id);
         if(!empty($zone)){
             $html = $zone->getDisplayCode();
         }
@@ -57,18 +57,18 @@ class DimbalZoneManager_DPM_FREE{
 
     public static function validateFreeZone($typeId){
         global $_POST;
-        $zones = DimbalZone_DPM_FREE::getAllByTypeId($typeId);
+        $zones = DimbalZone_DPM_PRO::getAllByTypeId($typeId);
         $zoneId = null;
         foreach($zones as $zone){
             if(!empty($zoneId)){
-                DimbalZone_DPM_FREE::deleteById($zone->id);
+                DimbalZone_DPM_PRO::deleteById($zone->id);
             }else{
                 $zoneId = $zone->id;
             }
         }
 
         if(empty($zoneId)){
-            $zone = new DimbalZone_DPM_FREE();
+            $zone = new DimbalZone_DPM_PRO();
             $zone->typeId = $typeId;
             $zone->text = "Default Zone";
             $zone->save();
