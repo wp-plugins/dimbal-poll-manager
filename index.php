@@ -1,7 +1,7 @@
 <?php
 /*
  * Plugin Name:   Dimbal Poll Manager - Professional
- * Version:       1.0.2
+ * Version:       1.0.3
  * Plugin URI:    http://www.dimbal.com/
  * Description:   A powerful Poll Management plugin allowing you to create and maintain user interest polls for your blog or website.
  * Author:        Dimbal Software
@@ -9,6 +9,7 @@
  */
 
 define('DIMBAL_CONST_DPM_PRO_SLUG', 'dimbal-poll-manager');
+define('DIMBAL_CONST_DPM_PRO_PAGE_PREFIX', 'dimbal-dpm');
 define('DIMBAL_CONST_DPM_PRO_PLUGIN_TITLE', 'Dimbal Poll Manager');
 define('DIMBAL_CONST_DPM_PRO_PLUGIN_TITLE_SHORT', 'Dimbal Polls');
 define('DIMBAL_CONST_DPM_PRO_PURCHASE_LEVEL', 'pro');

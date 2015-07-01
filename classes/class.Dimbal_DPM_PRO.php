@@ -64,14 +64,14 @@ class Dimbal_DPM_PRO{
      * Builds a full localized slug from a page name
      */
     public static function buildPageSlug($page){
-        return DIMBAL_CONST_DPM_PRO_SLUG.'-'.$page;
+        return DIMBAL_CONST_DPM_PRO_PAGE_PREFIX.'-'.$page;
     }
 
     /*
      * Builds a page url for use in admin links and so forth.  Appended via a query string parameter.
      */
     public static function getPageUrl($page, $params=array()){
-        $url = '?page=' . DIMBAL_CONST_DPM_PRO_SLUG.'-'.$page;
+        $url = '?page=' . DIMBAL_CONST_DPM_PRO_PAGE_PREFIX.'-'.$page;
         if(!empty($params)){
             $url = add_query_arg($params, $url);
         }
