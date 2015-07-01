@@ -38,6 +38,9 @@ Visit http://www.dimbal.com for any and all support inquiries.
 
 == Changelog ==
 
+= 1.0.5 =
+* Bug Fixes with Widget
+
 = 1.0.4 =
 * Bug Fixes
 

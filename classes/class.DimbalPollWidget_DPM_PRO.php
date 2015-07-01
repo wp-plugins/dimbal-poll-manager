@@ -45,8 +45,8 @@ class DimbalPollWidget_DPM_PRO extends WP_Widget {
             $displayId = 1;
         }
 
-        $displayIdFieldName = $this->get_field_name( 'display_id' );
-        $displayIdFieldName = str_replace("[","_",$displayIdFieldName);
+        $displayIdFieldOriginal = $this->get_field_name( 'display_id' );
+        $displayIdFieldName = str_replace("[","_",$displayIdFieldOriginal);
         $displayIdFieldName = str_replace("]","_",$displayIdFieldName);
         $displayIdFieldName = str_replace("-","_",$displayIdFieldName);
 
@@ -64,7 +64,7 @@ class DimbalPollWidget_DPM_PRO extends WP_Widget {
             if($displayId == $displayOptionKey){
                 $selected=' checked="checked"';
             }
-            echo '<input type="radio" name="'.$displayIdFieldName.'" value="'.$displayOptionKey.'"'.$selected.' onclick="dimbalPoll_DPM_PRO.widgetChangeType(\''.$displayIdFieldName.'\','.$displayOptionKey.')" /> '.$displayOptionName.'&nbsp;&nbsp;&nbsp;';
+            echo '<input type="radio" name="'.$displayIdFieldOriginal.'" value="'.$displayOptionKey.'"'.$selected.' onclick="dimbalPoll_DPM_PRO.widgetChangeType(\''.$displayIdFieldName.'\','.$displayOptionKey.')" /> '.$displayOptionName.'&nbsp;&nbsp;&nbsp;';
         }
         ?>
         <br />
