@@ -6,7 +6,7 @@
  * Time: 10:01 AM
  * To change this template use File | Settings | File Templates.
  */
-class DimbalZoneItem_DPM_FREE extends DimbalStandardLinkRecord_DPM_FREE{
+class DimbalZoneItem_DPM_PRO extends DimbalStandardLinkRecord_DPM_PRO{
 
     const TABLE_NAME = 'zone-item';
     const COLUMN_A = 'itemId';

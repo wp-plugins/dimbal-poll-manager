@@ -1,12 +1,12 @@
 <?php
 
-class DimbalPollAnswerChoice_DPM_FREE{
+class DimbalPollAnswerChoice_DPM_PRO{
 
     public $id;
     public $text;
     public $status;
 
-    public function __construct($id=false, $text="", $status=DimbalStandardObjectRecord_DPM_FREE::STATUS_ACTIVE){
+    public function __construct($id=false, $text="", $status=DimbalStandardObjectRecord_DPM_PRO::STATUS_ACTIVE){
         if($id==false){
             //ID must not be false
             //Logger::error("Choice Creation Failed :: ID Cannot Be False");

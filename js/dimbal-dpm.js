@@ -11,15 +11,16 @@
 
 // Jquery routine to initialize the Dimbal Object
 jQuery(document).ready(function($) {
-    dimbalPoll_DPM_FREE.initialize();
-    dimbalUserMessages_DPM_FREE.load();
+    dimbalPoll_DPM_PRO.initialize();
+    dimbalUserMessages_DPM_PRO.load();
 });
 
 // Dimbal Poll Object - should rename this object to dpm
-var dimbalPoll_DPM_FREE = {
+var dimbalPoll_DPM_PRO = {
 
     initialized:false,
-    slug:"DIMBAL_CONST_DPM_FREE_SLUG",
+    slug:"DIMBAL_CONST_DPM_PRO_SLUG",
+    page:"DIMBAL_CONST_DPM_PRO_PAGE_PREFIX",
     url_root:"",
     url_ajax:"",
     url_ajax_load:"",
@@ -56,7 +57,10 @@ var dimbalPoll_DPM_FREE = {
             }
         }
 
+        console.log("SLUG: "+this.slug);
+
         // Setup the URLS
+        //this.page = dimbal_dpm_vars.page;
         this.url_root = dimbal_dpm_vars.url;
         this.url_ajax = dimbal_dpm_vars.ajax_url;
         this.url_ajax_load = this.url_root+"/images/loading2.gif";
@@ -78,9 +82,11 @@ var dimbalPoll_DPM_FREE = {
                 elements[i].setAttribute("id", elementId);
             }
 
+            //console.log("Page: "+dimbalPoll_DPM_PRO.page);
+
             // Setup the proper Display Ajax Action
             var queryParams = {
-                action: dimbalPoll_DPM_FREE.slug+"-display-poll",
+                action: dimbalPoll_DPM_PRO.slug+"-display-poll",
                 dpmEId: elementId
             };
 
@@ -97,8 +103,8 @@ var dimbalPoll_DPM_FREE = {
             }
 
             //Now make the Ajax Request
-            jQuery.post(dimbalPoll_DPM_FREE.url_ajax, queryParams, function( response ){
-                dimbalPoll_DPM_FREE.generalAjaxResponse( response );
+            jQuery.post(dimbalPoll_DPM_PRO.url_ajax, queryParams, function( response ){
+                dimbalPoll_DPM_PRO.generalAjaxResponse( response );
             });
 
         }
@@ -156,9 +162,9 @@ var dimbalPoll_DPM_FREE = {
                 pieChart.elemId = chartElementId;
                 pieChart.data = dataArray;
                 pieChart.options = options;
-                dimbalCharts_DPM_FREE.chartsToDo.push(pieChart);
+                dimbalCharts_DPM_PRO.chartsToDo.push(pieChart);
 
-                dimbalCharts_DPM_FREE.drawGoogleCharts();
+                dimbalCharts_DPM_PRO.drawGoogleCharts();
 
             }
 
@@ -170,14 +176,14 @@ var dimbalPoll_DPM_FREE = {
 
         // Setup the proper Display Ajax Action
         var queryParams = {
-            action: dimbalPoll_DPM_FREE.slug+"-display-poll",
+            action: dimbalPoll_DPM_PRO.slug+"-display-poll",
             dpmEId: elemId,
             pollId: pollId
         };
 
         //Now make the Ajax Request
-        jQuery.post(dimbalPoll_DPM_FREE.url_ajax, queryParams, function( response ){
-            dimbalPoll_DPM_FREE.generalAjaxResponse( response );
+        jQuery.post(dimbalPoll_DPM_PRO.url_ajax, queryParams, function( response ){
+            dimbalPoll_DPM_PRO.generalAjaxResponse( response );
         });
     },
 
@@ -207,15 +213,15 @@ var dimbalPoll_DPM_FREE = {
 
         // Setup the proper Display Ajax Action
         var queryParams = {
-            action: dimbalPoll_DPM_FREE.slug+"-submit-poll",
+            action: dimbalPoll_DPM_PRO.slug+"-submit-poll",
             dpmEId: elemId,
             pollId: pollId,
             pollChoice: pollChoice
         };
 
         //Now make the Ajax Request
-        jQuery.post(dimbalPoll_DPM_FREE.url_ajax, queryParams, function( response ){
-            dimbalPoll_DPM_FREE.generalAjaxResponse( response );
+        jQuery.post(dimbalPoll_DPM_PRO.url_ajax, queryParams, function( response ){
+            dimbalPoll_DPM_PRO.generalAjaxResponse( response );
         });
     },
 
@@ -228,14 +234,14 @@ var dimbalPoll_DPM_FREE = {
 
         // Setup the proper Display Ajax Action
         var queryParams = {
-            action: dimbalPoll_DPM_FREE.slug+"-view-results",
+            action: dimbalPoll_DPM_PRO.slug+"-view-results",
             dpmEId: elemId,
             pollId: pollId
         };
 
         //Now make the Ajax Request
-        jQuery.post(dimbalPoll_DPM_FREE.url_ajax, queryParams, function( response ){
-            dimbalPoll_DPM_FREE.generalAjaxResponse( response );
+        jQuery.post(dimbalPoll_DPM_PRO.url_ajax, queryParams, function( response ){
+            dimbalPoll_DPM_PRO.generalAjaxResponse( response );
         });
 
     },
@@ -267,7 +273,7 @@ var dimbalPoll_DPM_FREE = {
                 'Yes'	: {
                     'class'	: 'blue',
                     'action': function(){
-                        var id = dimbalPoll_DPM_FREE.lastDeleteChoiceId;
+                        var id = dimbalPoll_DPM_PRO.lastDeleteChoiceId;
                         jQuery("input[name="+id+"_chk]").attr("checked", "deleted");
                         jQuery("input[name="+id+"_chk]").val("deleted");
                         jQuery("input[name="+id+"_chk]").css("visibility", "hidden");
@@ -276,7 +282,7 @@ var dimbalPoll_DPM_FREE = {
                         jQuery("input[name="+id+"_txt]").css("display", "none");
                         jQuery("input[name="+id+"_dlt]").css("visibility", "hidden");
                         jQuery("input[name="+id+"_dlt]").css("display", "none");
-                        dimbalPoll_DPM_FREE.lastDeleteChoiceId = 0;
+                        dimbalPoll_DPM_PRO.lastDeleteChoiceId = 0;
                     }
                 },
                 'No'	: {
@@ -332,31 +338,31 @@ var dimbalPoll_DPM_FREE = {
     },
 
     widgetChangeType:function(elemId, typeId) {
-        console.log("Widget Change Type: elemId["+elemId+"] typeId["+typeId+"]");
+        //console.log("Widget Change Type: elemId["+elemId+"] typeId["+typeId+"]");
         jQuery('.dimbal_dpm_widget_wrapper_'+elemId).hide();
         var elementName = elemId+"_"+typeId;
-        console.log("Final Element Name: "+elementName);
+        //console.log("Final Element Name: "+elementName);
         jQuery("."+elementName).show();
     },
 
     reportsPollAnalysis:function(){
 
         // Add a loading routine to the Reports view
-        console.log("dimbalPoll_DPM_FREE.url_ajax_load: "+dimbalPoll_DPM_FREE.url_ajax_load);
-        jQuery("#reportResponse").html("<div style='text-align:center;'><img src='"+dimbalPoll_DPM_FREE.url_ajax_load+"' /></div>");
+        console.log("dimbalPoll_DPM_PRO.url_ajax_load: "+dimbalPoll_DPM_PRO.url_ajax_load);
+        jQuery("#reportResponse").html("<div style='text-align:center;'><img src='"+dimbalPoll_DPM_PRO.url_ajax_load+"' /></div>");
 
         var e = document.getElementById("pollId");
         var pollId = e.options[e.selectedIndex].value;
 
         // Get the data from the server
         var queryParams = {
-            action: dimbalPoll_DPM_FREE.slug+"-admin-poll-analysis",
+            action: dimbalPoll_DPM_PRO.slug+"-admin-poll-analysis",
             pollId: pollId
         };
 
         //Now make the Ajax Request
-        jQuery.post(dimbalPoll_DPM_FREE.url_ajax, queryParams, function( response ){
-            dimbalPoll_DPM_FREE.reportsPollAnalysisResponse( response );
+        jQuery.post(dimbalPoll_DPM_PRO.url_ajax, queryParams, function( response ){
+            dimbalPoll_DPM_PRO.reportsPollAnalysisResponse( response );
         });
     },
 
@@ -395,7 +401,7 @@ var dimbalPoll_DPM_FREE = {
                 pollTable.data = pollTableData;
                 pollTable.options = {sort:'disable', width:'100%'};
                 jQuery("#"+wrapperId).append('<div id="'+pollTable.elemId+'" class="dimbal-charts-wrapper-half"></div>');
-                dimbalCharts_DPM_FREE.chartsToDo.push(pollTable);
+                dimbalCharts_DPM_PRO.chartsToDo.push(pollTable);
                 */
 
                 if(response.responseCounts != undefined){
@@ -428,7 +434,7 @@ var dimbalPoll_DPM_FREE = {
                     pieChart.data = googleDataArray;
                     pieChart.options = {title:'Response Distribution by Answer Choice'};
                     jQuery("#"+wrapperId).append('<div id="'+pieChart.elemId+'" class="dimbal-charts-wrapper-half"></div>');
-                    dimbalCharts_DPM_FREE.chartsToDo.push(pieChart);
+                    dimbalCharts_DPM_PRO.chartsToDo.push(pieChart);
 
 
                     // Setup Options for Response Count Bar Chart
@@ -438,7 +444,7 @@ var dimbalPoll_DPM_FREE = {
                     barChart.data = googleDataArray;
                     barChart.options = {title:'Response Counts by Answer Choice',legend:'none',chartArea: {left:'30%', width: '60%'}};
                     jQuery("#"+wrapperId).append('<div id="'+barChart.elemId+'" class="dimbal-charts-wrapper-half"></div>');
-                    dimbalCharts_DPM_FREE.chartsToDo.push(barChart);
+                    dimbalCharts_DPM_PRO.chartsToDo.push(barChart);
 
                 }
 
@@ -470,14 +476,14 @@ var dimbalPoll_DPM_FREE = {
                     annotationChart.data = googleDataArray;
                     annotationChart.options = {title:'Response Counts Over Time'};
                     jQuery("#"+wrapperId).append('<div id="'+annotationChart.elemId+'" class="dimbal-charts-wrapper-full" style="min-height:300px"></div>');
-                    dimbalCharts_DPM_FREE.chartsToDo.push(annotationChart);
+                    dimbalCharts_DPM_PRO.chartsToDo.push(annotationChart);
 
                 }
 
             }
 
             // Queue up the Chart Display
-            dimbalCharts_DPM_FREE.drawGoogleCharts();
+            dimbalCharts_DPM_PRO.drawGoogleCharts();
         }
 
     },
@@ -485,20 +491,20 @@ var dimbalPoll_DPM_FREE = {
     reportsZoneAnalysis:function(){
 
         // Add a loading routine to the Reports view
-        jQuery("#reportResponse").html("<div style='text-align:center;'><img src='"+dimbalPoll_DPM_FREE.url_ajax_load+"' alt='loading' /></div>");
+        jQuery("#reportResponse").html("<div style='text-align:center;'><img src='"+dimbalPoll_DPM_PRO.url_ajax_load+"' alt='loading' /></div>");
 
         var e = document.getElementById("zoneId");
         var zoneId = e.options[e.selectedIndex].value;
 
         // Get the data from the server
         var queryParams = {
-            action: dimbalPoll_DPM_FREE.slug+"-admin-zone-analysis",
+            action: dimbalPoll_DPM_PRO.slug+"-admin-zone-analysis",
             zoneId: zoneId
         };
 
         //Now make the Ajax Request
-        jQuery.post(dimbalPoll_DPM_FREE.url_ajax, queryParams, function( response ){
-            dimbalPoll_DPM_FREE.reportsZoneAnalysisResponse( response );
+        jQuery.post(dimbalPoll_DPM_PRO.url_ajax, queryParams, function( response ){
+            dimbalPoll_DPM_PRO.reportsZoneAnalysisResponse( response );
         });
     },
 
@@ -576,7 +582,7 @@ var dimbalPoll_DPM_FREE = {
                     pieChartHit.data = googleDataHits;
                     pieChartHit.options = {title:'Hit Distribution by Poll'};
                     jQuery("#"+wrapperId).append('<div id="'+pieChartHit.elemId+'" class="dimbal-charts-wrapper-half"></div>');
-                    dimbalCharts_DPM_FREE.chartsToDo.push(pieChartHit);
+                    dimbalCharts_DPM_PRO.chartsToDo.push(pieChartHit);
 
 
                     // Setup the Hit Count Bar Chart and add to the To Do list
@@ -586,7 +592,7 @@ var dimbalPoll_DPM_FREE = {
                     barChartHit.data = googleDataHits;
                     barChartHit.options = {title:'Hit Count by Poll',legend:'none',chartArea: {left:'30%', width: '60%'}};
                     jQuery("#"+wrapperId).append('<div id="'+barChartHit.elemId+'" class="dimbal-charts-wrapper-half"></div>');
-                    dimbalCharts_DPM_FREE.chartsToDo.push(barChartHit);
+                    dimbalCharts_DPM_PRO.chartsToDo.push(barChartHit);
 
                     // Setup the Response Count Pie Chart and add to the To Do list
                     var pieChartResponse = new dimbalChartObject();
@@ -595,7 +601,7 @@ var dimbalPoll_DPM_FREE = {
                     pieChartResponse.data = googleDataResponses;
                     pieChartResponse.options = {title:'Response Distribution by Poll'};
                     jQuery("#"+wrapperId).append('<div id="'+pieChartResponse.elemId+'" class="dimbal-charts-wrapper-half"></div>');
-                    dimbalCharts_DPM_FREE.chartsToDo.push(pieChartResponse);
+                    dimbalCharts_DPM_PRO.chartsToDo.push(pieChartResponse);
 
 
                     // Setup the Response Count Bar Chart and add to the To Do list
@@ -605,7 +611,7 @@ var dimbalPoll_DPM_FREE = {
                     barChartResponse.data = googleDataResponses;
                     barChartResponse.options = {title:'Response Count by Poll',legend:'none',chartArea: {left:'30%', width: '60%'}};
                     jQuery("#"+wrapperId).append('<div id="'+barChartResponse.elemId+'" class="dimbal-charts-wrapper-half"></div>');
-                    dimbalCharts_DPM_FREE.chartsToDo.push(barChartResponse);
+                    dimbalCharts_DPM_PRO.chartsToDo.push(barChartResponse);
 
                     /*
                     // Setup the Ratio Count Pie Chart and add to the To Do list
@@ -615,7 +621,7 @@ var dimbalPoll_DPM_FREE = {
                     pieChartRatio.data = googleDataHitResponseRatio;
                     pieChartRatio.options = {title:'Hit / Response Ratio Distribution by Poll'};
                     jQuery("#"+wrapperId).append('<div id="'+pieChartRatio.elemId+'" class="dimbal-charts-wrapper-half"></div>');
-                    dimbalCharts_DPM_FREE.chartsToDo.push(pieChartRatio);
+                    dimbalCharts_DPM_PRO.chartsToDo.push(pieChartRatio);
 
 
                     // Setup the Ratio Count Bar Chart and add to the To Do list
@@ -625,7 +631,7 @@ var dimbalPoll_DPM_FREE = {
                     barChartRatio.data = googleDataHitResponseRatio;
                     barChartRatio.options = {title:'Hit / Response Ratio by Poll'};
                     jQuery("#"+wrapperId).append('<div id="'+barChartRatio.elemId+'" class="dimbal-charts-wrapper-half"></div>');
-                    dimbalCharts_DPM_FREE.chartsToDo.push(barChartRatio);
+                    dimbalCharts_DPM_PRO.chartsToDo.push(barChartRatio);
                     */
                 }
 
@@ -639,7 +645,7 @@ var dimbalPoll_DPM_FREE = {
             }
 
             // Queue up the Chart Display
-            dimbalCharts_DPM_FREE.drawGoogleCharts();
+            dimbalCharts_DPM_PRO.drawGoogleCharts();
         }
 
     },
@@ -661,7 +667,7 @@ var dimbalChartObject = function(){
     var data = [];
 };
 
-var dimbalCharts_DPM_FREE = {
+var dimbalCharts_DPM_PRO = {
 
     // Google Charts
     isGoogleLoaded:false,
@@ -671,51 +677,51 @@ var dimbalCharts_DPM_FREE = {
     chartsToDo:[],
 
     loadGoogle:function() {
-        if(dimbalCharts_DPM_FREE.isGoogleLoaded){
-            dimbalCharts_DPM_FREE.loadGoogleVisualization();
+        if(dimbalCharts_DPM_PRO.isGoogleLoaded){
+            dimbalCharts_DPM_PRO.loadGoogleVisualization();
         }else{
-            dimbalCharts_DPM_FREE.loadJsFile("https://www.google.com/jsapi?callback=dimbalCharts_DPM_FREE.loadGoogleVisualization");
+            dimbalCharts_DPM_PRO.loadJsFile("https://www.google.com/jsapi?callback=dimbalCharts_DPM_PRO.loadGoogleVisualization");
         }
     },
 
     loadGoogleVisualization:function() {
         //Validate google object is loaded
         if(google == undefined){
-            dimbalCharts_DPM_FREE.loadGoogle();
+            dimbalCharts_DPM_PRO.loadGoogle();
             return; //Do the main loader
         }else{
-            dimbalCharts_DPM_FREE.isGoogleLoaded = true;
+            dimbalCharts_DPM_PRO.isGoogleLoaded = true;
         }
 
         //Load the visualizer
-        if(dimbalCharts_DPM_FREE.isGoogleVisLoaded){
-            dimbalCharts_DPM_FREE.drawGoogleCharts();
+        if(dimbalCharts_DPM_PRO.isGoogleVisLoaded){
+            dimbalCharts_DPM_PRO.drawGoogleCharts();
         }else{
-            google.load("visualization", "1", {'packages':['corechart','table','annotationchart'], "callback" : dimbalCharts_DPM_FREE.drawGoogleCharts});
+            google.load("visualization", "1", {'packages':['corechart','table','annotationchart'], "callback" : dimbalCharts_DPM_PRO.drawGoogleCharts});
         }
     },
 
     drawGoogleCharts:function(){
 
         //Validate that google and google.visualization is loaded
-        if(dimbalCharts_DPM_FREE.isGoogleLoaded){
+        if(dimbalCharts_DPM_PRO.isGoogleLoaded){
             if(google.visualization == undefined){
-                dimbalCharts_DPM_FREE.loadGoogleVisualization();
+                dimbalCharts_DPM_PRO.loadGoogleVisualization();
                 return; //Do the visualization loader
             }else{
-                dimbalCharts_DPM_FREE.isGoogleVisLoaded = true;
+                dimbalCharts_DPM_PRO.isGoogleVisLoaded = true;
             }
         }else{
-            dimbalCharts_DPM_FREE.loadGoogle();
+            dimbalCharts_DPM_PRO.loadGoogle();
             return;	//Start over at the google loader and exit this function
         }
 
         console.log("Charts to Do");
-        console.dir(dimbalCharts_DPM_FREE.chartsToDo);
+        console.dir(dimbalCharts_DPM_PRO.chartsToDo);
 
         // Loop through any elements added to our to-do array...
-        while(dimbalCharts_DPM_FREE.chartsToDo.length > 0){
-            var dimbalChart = dimbalCharts_DPM_FREE.chartsToDo[0];
+        while(dimbalCharts_DPM_PRO.chartsToDo.length > 0){
+            var dimbalChart = dimbalCharts_DPM_PRO.chartsToDo[0];
 
             //console.log("Drawing Google Chart:");
             //console.dir(dimbalChart);
@@ -734,7 +740,7 @@ var dimbalCharts_DPM_FREE = {
                         jQuery("#"+elemId).html("<h3 style='text-align: center;'>No Data to Display</h3>");
 
                         // Remove the entry from the array
-                        dimbalCharts_DPM_FREE.removeArrayEntry(dimbalCharts_DPM_FREE.chartsToDo, 0);
+                        dimbalCharts_DPM_PRO.removeArrayEntry(dimbalCharts_DPM_PRO.chartsToDo, 0);
 
                         continue;   // Can't have missing data or data with just one row in it... Skip this chart
                     }
@@ -755,7 +761,7 @@ var dimbalCharts_DPM_FREE = {
                         options.colors=[];
                     }
                     for(var i = 0;i < data.getNumberOfRows();i++){      // getNumberOfRows can only be called once data is Google Formatted
-                        var randomColor = dimbalCharts_DPM_FREE.getRandomColor();
+                        var randomColor = dimbalCharts_DPM_PRO.getRandomColor();
                         console.log("Random Color: "+randomColor);
                         options.colors.push(randomColor);
                     }
@@ -789,7 +795,7 @@ var dimbalCharts_DPM_FREE = {
             }
 
             // Remove the entry from the array
-            dimbalCharts_DPM_FREE.removeArrayEntry(dimbalCharts_DPM_FREE.chartsToDo, 0);
+            dimbalCharts_DPM_PRO.removeArrayEntry(dimbalCharts_DPM_PRO.chartsToDo, 0);
 
         }
     },
@@ -822,7 +828,7 @@ var dimbalCharts_DPM_FREE = {
 };
 
 
-var dimbalUserMessages_DPM_FREE = {
+var dimbalUserMessages_DPM_PRO = {
     counter:0,
     load: function(){
         var html = jQuery("#dimbal-user-messages-tmp").html();

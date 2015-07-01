@@ -8,7 +8,7 @@
  * This file controls the Widget Options for the Dimbal Software Poll Widgets
  *
  */
-class DimbalPollWidget_DPM_FREE extends WP_Widget {
+class DimbalPollWidget_DPM_PRO extends WP_Widget {
 
     public static $displayOptions = array(
         1=>'Poll',
@@ -18,16 +18,16 @@ class DimbalPollWidget_DPM_FREE extends WP_Widget {
     public function __construct() {
         // widget actual processes
         parent::__construct(
-            DIMBAL_CONST_DPM_FREE_SLUG, // Base ID
-            DIMBAL_CONST_DPM_FREE_PLUGIN_TITLE, // Name
-            array( 'description' => __( 'Add this widget to display Polls from the '.DIMBAL_CONST_DPM_FREE_PLUGIN_TITLE.'.  Select either a single poll or a group of polls.', 'text_domain' ), ) // Args
+            DIMBAL_CONST_DPM_PRO_SLUG, // Base ID
+            DIMBAL_CONST_DPM_PRO_PLUGIN_TITLE, // Name
+            array( 'description' => __( 'Add this widget to display Polls from the '.DIMBAL_CONST_DPM_PRO_PLUGIN_TITLE.'.  Select either a single poll or a group of polls.', 'text_domain' ), ) // Args
         );
     }
 
     public function form( $instance ) {
         // outputs the options form on admin
-        $polls = DimbalPollQuestion_DPM_FREE::getAll();
-        $zones = DimbalZone_DPM_FREE::getAllByTypeId(DimbalZone_DPM_FREE::TYPE_DPM);
+        $polls = DimbalPollQuestion_DPM_PRO::getAll();
+        $zones = DimbalZone_DPM_PRO::getAllByTypeId(DimbalZone_DPM_PRO::TYPE_DPM);
 
         $pollId = false;
         $zoneId = false;
@@ -64,7 +64,7 @@ class DimbalPollWidget_DPM_FREE extends WP_Widget {
             if($displayId == $displayOptionKey){
                 $selected=' checked="checked"';
             }
-            echo '<input type="radio" name="'.$displayIdFieldName.'" value="'.$displayOptionKey.'"'.$selected.' onclick="dimbalPoll_DPM_FREE.widgetChangeType(\''.$displayIdFieldName.'\','.$displayOptionKey.')" /> '.$displayOptionName.'&nbsp;&nbsp;&nbsp;';
+            echo '<input type="radio" name="'.$displayIdFieldName.'" value="'.$displayOptionKey.'"'.$selected.' onclick="dimbalPoll_DPM_PRO.widgetChangeType(\''.$displayIdFieldName.'\','.$displayOptionKey.')" /> '.$displayOptionName.'&nbsp;&nbsp;&nbsp;';
         }
         ?>
         <br />
@@ -102,7 +102,7 @@ class DimbalPollWidget_DPM_FREE extends WP_Widget {
             </select>
         </div>
         <script>
-            dimbalPoll_DPM_FREE.widgetChangeType('<?=($displayIdFieldName)?>',<?=($displayId)?>);
+            dimbalPoll_DPM_PRO.widgetChangeType('<?=($displayIdFieldName)?>',<?=($displayId)?>);
         </script>
     </p>
     <?php
@@ -128,12 +128,12 @@ class DimbalPollWidget_DPM_FREE extends WP_Widget {
         // outputs the content of the widget
 
         // Make sure the framework is enabled (this will prevent the widget from display entirely)
-        if(!Dimbal_DPM_FREE::isPluginEnabled()){
+        if(!Dimbal_DPM_PRO::isPluginEnabled()){
             return;
         }
 
         // Make sure the Dimbal Scripts are enqueued
-        DimbalPollManager_DPM_FREE::enqueuePublicResources();
+        DimbalPollManager_DPM_PRO::enqueuePublicResources();
 
         $html = "";
 
@@ -144,7 +144,7 @@ class DimbalPollWidget_DPM_FREE extends WP_Widget {
             case 1:
                 // Poll
                 $pollId = $instance['poll_id'];
-                $poll = DimbalPollQuestion_DPM_FREE::get($pollId);
+                $poll = DimbalPollQuestion_DPM_PRO::get($pollId);
                 if(!empty($poll)){
                     $html = $poll->getDisplayCode();
                 }
@@ -152,7 +152,7 @@ class DimbalPollWidget_DPM_FREE extends WP_Widget {
             case 2:
                 // Zone
                 $zoneId = $instance['zone_id'];
-                $zone = DimbalZone_DPM_FREE::get($zoneId);
+                $zone = DimbalZone_DPM_PRO::get($zoneId);
                 if(!empty($zone)){
                     $html = $zone->getDisplayCode();
                 }

@@ -6,7 +6,7 @@
  * Time: 5:12 PM
  * To change this template use File | Settings | File Templates.
  */
-class DimbalBox_DPM_FREE{
+class DimbalBox_DPM_PRO{
 
     public $id;                 // An id to use for the element.  If missing a random int will be used
     public $type=1;             // The type id to identify how to be displayed
@@ -88,7 +88,7 @@ class DimbalBox_DPM_FREE{
                             <br />
                             ';
                             foreach($this->buttons as $button){
-                                $html .= Dimbal_DPM_FREE::buildButton($button);
+                                $html .= Dimbal_DPM_PRO::buildButton($button);
                             }
                             $html .= '
                         </div>
@@ -109,7 +109,7 @@ class DimbalBox_DPM_FREE{
                             <br />
                             ';
                             foreach($this->buttons as $button){
-                                $html .= Dimbal_DPM_FREE::buildButton($button);
+                                $html .= Dimbal_DPM_PRO::buildButton($button);
                             }
                             $html .= '
                         </div>
