@@ -8,43 +8,43 @@
  */
 
 
-echo Dimbal_DPM_FREE::buildHeader(array(
+echo Dimbal_DPM_PRO::buildHeader(array(
     'title'=>'Help and Support',
-    'icon'=>DIMBAL_CONST_DPM_FREE_URL_IMAGES.'/info_rhombus.png',
+    'icon'=>DIMBAL_CONST_DPM_PRO_URL_IMAGES.'/info_rhombus.png',
     'description'=>'Use this page to gain access to helpful resources and advice.',
 ));
 
 
 
 
-$boxesLeft[] = new DimbalBox_DPM_FREE(array(
-    'type'=>DimbalBox_DPM_FREE::TYPE_TRIM,
-    'size'=>DimbalBox_DPM_FREE::SIZE_FULL,
+$boxesLeft[] = new DimbalBox_DPM_PRO(array(
+    'type'=>DimbalBox_DPM_PRO::TYPE_TRIM,
+    'size'=>DimbalBox_DPM_PRO::SIZE_FULL,
     'title'=>'Knowledge Base Articles',
     'content'=>'Knowledge base articles are tutorials and references written to assist in the use of our products.  They address commonly asked questions as well as provide step by step instructions through various pieces of the software functionality.',
-    'icon'=>DIMBAL_CONST_DPM_FREE_URL_IMAGES.'/document_layout.png',
+    'icon'=>DIMBAL_CONST_DPM_PRO_URL_IMAGES.'/document_layout.png',
     'buttons'=>array(
         0=>array('url'=>'http://www.dimbal.com/kb/','text'=>'View Knowledge Base Articles')
     )
 ));
 
-$boxesLeft[] = new DimbalBox_DPM_FREE(array(
-    'type'=>DimbalBox_DPM_FREE::TYPE_TRIM,
-    'size'=>DimbalBox_DPM_FREE::SIZE_FULL,
+$boxesLeft[] = new DimbalBox_DPM_PRO(array(
+    'type'=>DimbalBox_DPM_PRO::TYPE_TRIM,
+    'size'=>DimbalBox_DPM_PRO::SIZE_FULL,
     'title'=>'User Forums',
     'content'=>'The user forums contain questions asked by users of the Dimbal Software products.  You may find answers to questions you currently have as well as useful answers about the Dimbal Software plugins.',
-    'icon'=>DIMBAL_CONST_DPM_FREE_URL_IMAGES.'/group.png',
+    'icon'=>DIMBAL_CONST_DPM_PRO_URL_IMAGES.'/group.png',
     'buttons'=>array(
         0=>array('url'=>'http://www.dimbal.com/forum/','text'=>'Visit User Forums')
     )
 ));
 
-$boxesLeft[] = new DimbalBox_DPM_FREE(array(
-    'type'=>DimbalBox_DPM_FREE::TYPE_TRIM,
-    'size'=>DimbalBox_DPM_FREE::SIZE_FULL,
+$boxesLeft[] = new DimbalBox_DPM_PRO(array(
+    'type'=>DimbalBox_DPM_PRO::TYPE_TRIM,
+    'size'=>DimbalBox_DPM_PRO::SIZE_FULL,
     'title'=>'Still Need Help?',
     'content'=>'Still need help beyond the Knowledge Base and User Forums?  Not to worry.  You can contact our support team directly.',
-    'icon'=>DIMBAL_CONST_DPM_FREE_URL_IMAGES.'/help.png',
+    'icon'=>DIMBAL_CONST_DPM_PRO_URL_IMAGES.'/help.png',
     'buttons'=>array(
         0=>array('url'=>'http://www.dimbal.com/lib/dimbalcore/support/','text'=>'Contact Support')
     )
@@ -53,23 +53,23 @@ $boxesLeft[] = new DimbalBox_DPM_FREE(array(
 
 
 /*
-$boxesRight[] = new DimbalBox_DPM_FREE(array(
-    'type'=>DimbalBox_DPM_FREE::TYPE_TRIM,
-    'size'=>DimbalBox_DPM_FREE::SIZE_FULL,
+$boxesRight[] = new DimbalBox_DPM_PRO(array(
+    'type'=>DimbalBox_DPM_PRO::TYPE_TRIM,
+    'size'=>DimbalBox_DPM_PRO::SIZE_FULL,
     'title'=>'Rate Us',
     'content'=>'Did you like this Plugin?  Please leave positive feedback to help it grow.',
-    'icon'=>DIMBAL_CONST_DPM_FREE_URL_IMAGES.'/award_star_gold_3.png',
+    'icon'=>DIMBAL_CONST_DPM_PRO_URL_IMAGES.'/award_star_gold_3.png',
     'buttons'=>array(
         0=>array('url'=>'http://wordpress.org/support/view/plugin-reviews/dimbal-social-popup','text'=>'Rate this Plugin')
     )
 ));
 */
 
-$boxesRight[] = new DimbalBox_DPM_FREE(array(
-    'type'=>DimbalBox_DPM_FREE::TYPE_TRIM,
-    'size'=>DimbalBox_DPM_FREE::SIZE_FULL,
+$boxesRight[] = new DimbalBox_DPM_PRO(array(
+    'type'=>DimbalBox_DPM_PRO::TYPE_TRIM,
+    'size'=>DimbalBox_DPM_PRO::SIZE_FULL,
     'title'=>'Follow Us',
-    'icon'=>DIMBAL_CONST_DPM_FREE_URL_IMAGES.'/facebook-icon32.png',
+    'icon'=>DIMBAL_CONST_DPM_PRO_URL_IMAGES.'/facebook-icon32.png',
     'content'=>"
         <div>Follow us on Facebook for free giveaways, product announcements and more...</div>
         <br />
@@ -103,12 +103,12 @@ $boxesRight[] = new DimbalBox_DPM_FREE(array(
 <div style="display:table; width:100%;">
     <div style="display:table-cell; width:66%; vertical-align: top;">
         <?php
-        echo DimbalBox_DPM_FREE::renderBoxes($boxesLeft);
+        echo DimbalBox_DPM_PRO::renderBoxes($boxesLeft);
         ?>
     </div>
     <div style="display:table-cell; width:33%; vertical-align: top; margin-right:25px;">
         <?php
-        echo DimbalBox_DPM_FREE::renderBoxes($boxesRight);
+        echo DimbalBox_DPM_PRO::renderBoxes($boxesRight);
         ?>
     </div>
 </div>
@@ -116,5 +116,5 @@ $boxesRight[] = new DimbalBox_DPM_FREE(array(
 
 <?php
 // Close the wrapper
-echo Dimbal_DPM_FREE::buildFooter();
+echo Dimbal_DPM_PRO::buildFooter();
 

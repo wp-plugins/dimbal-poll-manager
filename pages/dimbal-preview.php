@@ -8,31 +8,31 @@
  */
 
 // Build the Header
-echo Dimbal_DPM_FREE::buildHeader(array(
+echo Dimbal_DPM_PRO::buildHeader(array(
     'title'=>'Feature Preview',
-    'icon'=>DIMBAL_CONST_DPM_FREE_URL_IMAGES.'/magnifier.png',
+    'icon'=>DIMBAL_CONST_DPM_PRO_URL_IMAGES.'/magnifier.png',
     'description'=>'This page allows for previewing an asset or feature.  The display will differe based on the feature.',
     'buttons'=>array(
-        0=>array('text'=>'Home','params'=>array('page'=>Dimbal_DPM_FREE::buildPageSlug(Dimbal_DPM_FREE::PAGE_HOME)))
+        0=>array('text'=>'Home','params'=>array('page'=>Dimbal_DPM_PRO::buildPageSlug(Dimbal_DPM_PRO::PAGE_HOME)))
     )
 ));
 
 echo "<hr />";
 
 // Now we need to see which type of Preview this is
-$ac = Dimbal_DPM_FREE::getRequestVarIfExists('ac');
+$ac = Dimbal_DPM_PRO::getRequestVarIfExists('ac');
 
 switch($ac){
     case '1':
         // Preview a Poll
-        $pollId = Dimbal_DPM_FREE::getRequestVarIfExists('pollId');
-        $poll = DimbalPollQuestion_DPM_FREE::get($pollId);
+        $pollId = Dimbal_DPM_PRO::getRequestVarIfExists('pollId');
+        $poll = DimbalPollQuestion_DPM_PRO::get($pollId);
         if(!empty($poll)){
             echo $poll->getDisplayCode();
         }
         break;
     case '2':
-        $tipId = Dimbal_DPM_FREE::getRequestVarIfExists('tipId');
+        $tipId = Dimbal_DPM_PRO::getRequestVarIfExists('tipId');
         $tip = DimbalTipItem::get($tipId);
         if(!empty($tip)){
             echo $tip->getDisplayCode();
@@ -40,8 +40,8 @@ switch($ac){
         break;
     case '3':
         // Preview a Zone
-        $zoneId = Dimbal_DPM_FREE::getRequestVarIfExists('zoneId');
-        $zone = DimbalZone_DPM_FREE::get($zoneId);
+        $zoneId = Dimbal_DPM_PRO::getRequestVarIfExists('zoneId');
+        $zone = DimbalZone_DPM_PRO::get($zoneId);
         if(!empty($zone)){
             echo $zone->getDisplayCode();
         }
@@ -51,4 +51,4 @@ switch($ac){
 
 
 // Close the wrapper
-echo Dimbal_DPM_FREE::buildFooter();
+echo Dimbal_DPM_PRO::buildFooter();
