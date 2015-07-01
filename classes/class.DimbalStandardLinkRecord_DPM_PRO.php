@@ -6,7 +6,7 @@
  * Time: 10:58 AM
  * To change this template use File | Settings | File Templates.
  */
-class DimbalStandardLinkRecord_DPM_FREE{
+class DimbalStandardLinkRecord_DPM_PRO{
 
     const TABLE_NAME = '';
     const COLUMN_A = '';
@@ -48,7 +48,7 @@ class DimbalStandardLinkRecord_DPM_FREE{
      */
     public static function getTableName(){
         global $wpdb;
-        $name = $wpdb->prefix . DIMBAL_CONST_DPM_FREE_SLUG . '-' . static::TABLE_NAME;
+        $name = $wpdb->prefix . DIMBAL_CONST_DPM_PRO_SLUG . '-' . static::TABLE_NAME;
         $name = str_replace("-","_",$name);
         return $name;
     }
@@ -121,7 +121,7 @@ class DimbalStandardLinkRecord_DPM_FREE{
             return false;
         }
 
-        error_log(__CLASS__."::".__FUNCTION__." - Inside function column[$column] value[$value] tablename[$tableName]");
+        //error_log(__CLASS__."::".__FUNCTION__." - Inside function column[$column] value[$value] tablename[$tableName]");
 
         // Query the Data
         $sql = $wpdb->prepare(
@@ -132,7 +132,7 @@ class DimbalStandardLinkRecord_DPM_FREE{
             $value
         );
 
-        error_log(__CLASS__."::".__FUNCTION__." - SQL : $sql");
+        //error_log(__CLASS__."::".__FUNCTION__." - SQL : $sql");
 
         // Get the results
         $results = self::executeQuery($sql, ARRAY_A);

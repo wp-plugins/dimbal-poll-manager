@@ -6,15 +6,15 @@
  * Time: 11:14 PM
  * To change this template use File | Settings | File Templates.
  */
-class Dimbal_DPM_FREE{
+class Dimbal_DPM_PRO{
 
-    const USER_MESSAGES_KEY = "DIMBAL_CONST_DPM_FREE_USER_MESSAGES_COOKIE";
+    const USER_MESSAGES_KEY = "DIMBAL_CONST_DPM_PRO_USER_MESSAGES_COOKIE";
 
     /*
     * The version string for the Database
     */
     public static function buildDatabaseVersionString(){
-        return DIMBAL_CONST_DPM_FREE_SLUG . '-version';
+        return DIMBAL_CONST_DPM_PRO_SLUG . '-version';
     }
 
     /*
@@ -22,7 +22,7 @@ class Dimbal_DPM_FREE{
     */
     public static function checkForUpgrade($versionString, $currentVersion, $installCallback){
         global $wpdb;
-        $installedVersion = Dimbal_DPM_FREE::getInstalledVersionNumber($versionString);
+        $installedVersion = Dimbal_DPM_PRO::getInstalledVersionNumber($versionString);
         if ( $currentVersion != $installedVersion) {
             // Upgrade the Database
             call_user_func($installCallback);
@@ -47,7 +47,7 @@ class Dimbal_DPM_FREE{
     * Checks the user defined settings to see if the Framework was disabled
     */
     public static function isPluginEnabled(){
-        return DimbalSetting_DPM_FREE::getSetting('plugin_enabled');
+        return DimbalSetting_DPM_PRO::getSetting('plugin_enabled');
     }
 
     /*
@@ -57,21 +57,21 @@ class Dimbal_DPM_FREE{
         global $plugin_page;
         $plugin_page = str_replace("-free", "", $plugin_page);
         $plugin_page = str_replace("-pro", "", $plugin_page);
-        include WP_PLUGIN_DIR.'/'.DIMBAL_CONST_DPM_FREE_SLUG.'/pages/'.$plugin_page.'.php';
+        include WP_PLUGIN_DIR.'/'.DIMBAL_CONST_DPM_PRO_SLUG.'/pages/'.$plugin_page.'.php';
     }
 
     /*
      * Builds a full localized slug from a page name
      */
     public static function buildPageSlug($page){
-        return DIMBAL_CONST_DPM_FREE_SLUG.'-'.$page;
+        return DIMBAL_CONST_DPM_PRO_PAGE_PREFIX.'-'.$page;
     }
 
     /*
      * Builds a page url for use in admin links and so forth.  Appended via a query string parameter.
      */
     public static function getPageUrl($page, $params=array()){
-        $url = '?page=' . DIMBAL_CONST_DPM_FREE_SLUG.'-'.$page;
+        $url = '?page=' . DIMBAL_CONST_DPM_PRO_PAGE_PREFIX.'-'.$page;
         if(!empty($params)){
             $url = add_query_arg($params, $url);
         }
@@ -102,7 +102,7 @@ class Dimbal_DPM_FREE{
 
         // Route the call as appropriate
         $response = '';
-        $action = Dimbal_DPM_FREE::getRequestVarIfExists('action');
+        $action = Dimbal_DPM_PRO::getRequestVarIfExists('action');
         if(array_key_exists($action, $handlers)){
             $call = $handlers[$action];
             $response = call_user_func($call);
@@ -118,7 +118,7 @@ class Dimbal_DPM_FREE{
      * Takes in a class name such as "Dimbal" and returns an app formatted name such as "Dimbal_DPM"
      */
     public static function buildAppClassName($className){
-        $newClassName = $className . '_' . strtoupper(DIMBAL_CONST_DPM_FREE_APP_CODE) . '_' . strtoupper(DIMBAL_CONST_DPM_FREE_PURCHASE_LEVEL);
+        $newClassName = $className . '_' . strtoupper(DIMBAL_CONST_DPM_PRO_APP_CODE) . '_' . strtoupper(DIMBAL_CONST_DPM_PRO_PURCHASE_LEVEL);
         //error_log("Old Class Name [$className] New Class Name [$newClassName]");
         return $newClassName;
     }
@@ -237,7 +237,7 @@ class Dimbal_DPM_FREE{
             $html .= '<div id="dimbal-user-messages-tmp" style="display:none;">';
             foreach($messages as $message){
                 $rand = rand(100000,999999);
-                $html .= '<div class="dimbal-user-message" id="dimbal_user_message_'.$rand.'" onclick="dimbalUserMessages_DPM_FREE.remove('.$rand.')">'.$message.'</div>';
+                $html .= '<div class="dimbal-user-message" id="dimbal_user_message_'.$rand.'" onclick="dimbalUserMessages_DPM_PRO.remove('.$rand.')">'.$message.'</div>';
             }
             $html .= '</div>';
         }
