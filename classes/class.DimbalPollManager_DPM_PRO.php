@@ -233,6 +233,7 @@ class DimbalPollManager_DPM_PRO{
         // Don't forget to localize the data objects we want
         $dimbalVars = array(
             'slug' => DIMBAL_CONST_DPM_PRO_SLUG,
+            'page' => DIMBAL_CONST_DPM_PRO_PAGE_PREFIX,
             'url' => DIMBAL_CONST_DPM_PRO_URL,
             'ajax_url' => admin_url('admin-ajax.php'),
         );
@@ -248,6 +249,7 @@ class DimbalPollManager_DPM_PRO{
         // Don't forget to localize the data objects we want
         $dimbalVars = array(
             'slug' => DIMBAL_CONST_DPM_PRO_SLUG,
+            'page' => DIMBAL_CONST_DPM_PRO_PAGE_PREFIX,
             'url' => DIMBAL_CONST_DPM_PRO_URL,
             'ajax_url' => admin_url('admin-ajax.php'),
         );
@@ -386,7 +388,7 @@ class DimbalPollManager_DPM_PRO{
      */
     public static function ajaxDisplayPoll(){
 
-        error_log("Inside :: ".__CLASS__."::".__FUNCTION__);
+        //error_log("Inside :: ".__CLASS__."::".__FUNCTION__);
 
         $response = array();
 
@@ -530,7 +532,7 @@ class DimbalPollManager_DPM_PRO{
     }
 
     public static function ajaxSubmitPoll(){
-        Dimbal_DPM_PRO::logMessage("Inside ".__FUNCTION__);
+        //Dimbal_DPM_PRO::logMessage("Inside ".__FUNCTION__);
 
         $response = array();
 

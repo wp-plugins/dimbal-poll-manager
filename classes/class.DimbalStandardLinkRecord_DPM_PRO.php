@@ -121,7 +121,7 @@ class DimbalStandardLinkRecord_DPM_PRO{
             return false;
         }
 
-        error_log(__CLASS__."::".__FUNCTION__." - Inside function column[$column] value[$value] tablename[$tableName]");
+        //error_log(__CLASS__."::".__FUNCTION__." - Inside function column[$column] value[$value] tablename[$tableName]");
 
         // Query the Data
         $sql = $wpdb->prepare(
@@ -132,7 +132,7 @@ class DimbalStandardLinkRecord_DPM_PRO{
             $value
         );
 
-        error_log(__CLASS__."::".__FUNCTION__." - SQL : $sql");
+        //error_log(__CLASS__."::".__FUNCTION__." - SQL : $sql");
 
         // Get the results
         $results = self::executeQuery($sql, ARRAY_A);

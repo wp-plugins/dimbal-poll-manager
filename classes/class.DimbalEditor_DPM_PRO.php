@@ -463,7 +463,7 @@ class DimbalEditor_DPM_PRO{
 
     public static function saveEditorChanges($object, $options, $requestVars){
 
-        error_log("Inside saveEditorChanges");
+        //error_log("Inside saveEditorChanges");
 
         /*
           $options = array(

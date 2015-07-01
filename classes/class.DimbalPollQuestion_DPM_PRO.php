@@ -582,13 +582,13 @@ class DimbalPollQuestion_DPM_PRO extends DimbalStandardObjectRecord_DPM_PRO{
     public function getAllAnswerChoices($simpleArray=true){
         $choices = array();
         foreach($this->choices as $choice){
-            if($choice instanceof DimbalPollAnswerChoice){
+            //if($choice instanceof DimbalPollAnswerChoice){
                 if($simpleArray){
                     $choices[$choice->id]=$choice->text;
                 }else{
                     $choices[$choice->id]=$choice;
                 }
-            }
+            //}
         }
         //Logger::debug("ANSWER CHOICES: ".print_r($choices,true));
         return $choices;
