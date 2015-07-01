@@ -6,7 +6,7 @@
  * Time: 10:45 PM
  * To change this template use File | Settings | File Templates.
  */
-class DimbalSetting_DPM_FREE{
+class DimbalSetting_DPM_PRO{
 
     public static $settings = null;
 
@@ -43,7 +43,7 @@ class DimbalSetting_DPM_FREE{
             $wpdb->insert(
                 $table_name,
                 array(
-                    'data' => DimbalStandardObjectRecord_DPM_FREE::pack($this)
+                    'data' => DimbalStandardObjectRecord_DPM_PRO::pack($this)
                 ),
                 array(
                     '%s'
@@ -74,7 +74,7 @@ class DimbalSetting_DPM_FREE{
             $wpdb->update(
                 $table_name,
                 array(
-                    'data' => DimbalStandardObjectRecord_DPM_FREE::pack($this)
+                    'data' => DimbalStandardObjectRecord_DPM_PRO::pack($this)
                 ),
                 array( 'ID' => $this->id ),
                 array(
@@ -107,7 +107,7 @@ class DimbalSetting_DPM_FREE{
         $packedObjects = self::executeQuery($sql, ARRAY_A);
 
         // Test the results are valid and unpack if so
-        $goodObjects = DimbalStandardObjectRecord_DPM_FREE::unpackObjects($packedObjects);
+        $goodObjects = DimbalStandardObjectRecord_DPM_PRO::unpackObjects($packedObjects);
 
         // Get the first object
         if(!empty($goodObjects)){
@@ -137,7 +137,7 @@ class DimbalSetting_DPM_FREE{
             // Need to give the Admin User a Message -- or maybe not -- just consider it deactivated
             // Need to exit out of here though so that settings are not auto loaded in case of re-write
             // Might need to create a default single setting for activated the framework
-            $settings = new DimbalSetting_DPM_FREE();
+            $settings = new DimbalSetting_DPM_PRO();
             $settings->plugin_enabled = true;
             $settings->save();
             self::$settings = $settings;
@@ -206,7 +206,7 @@ class DimbalSetting_DPM_FREE{
      */
     public static function getTableName(){
         global $wpdb;
-        $name = $wpdb->prefix . DIMBAL_CONST_DPM_FREE_SLUG . '-settings';
+        $name = $wpdb->prefix . DIMBAL_CONST_DPM_PRO_SLUG . '-settings';
         $name = str_replace("-","_",$name);
         return $name;
     }

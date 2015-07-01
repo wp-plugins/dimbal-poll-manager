@@ -6,7 +6,7 @@
  * Time: 12:37 PM
  * To change this template use File | Settings | File Templates.
  */
-class DimbalPollResponse_DPM_FREE extends DimbalStandardObjectRecord_DPM_FREE{
+class DimbalPollResponse_DPM_PRO extends DimbalStandardObjectRecord_DPM_PRO{
     public $lastModified;
     public $pollId;
 
@@ -25,7 +25,7 @@ class DimbalPollResponse_DPM_FREE extends DimbalStandardObjectRecord_DPM_FREE{
         $table_name = self::getTableName();
 
         //Get the Poll object
-        $poll = DimbalPollQuestion_DPM_FREE::get($pollId);
+        $poll = DimbalPollQuestion_DPM_PRO::get($pollId);
         if(empty($poll)){
             // Poll could not be retrieved - do not save the response
             return false;
