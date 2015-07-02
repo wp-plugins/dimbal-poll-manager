@@ -7,7 +7,7 @@
  *
  * Base class for the Common Data Objects stored within this Plugin
  */
-class DimbalStandardObjectRecord_DPM_FREE{
+class DimbalStandardObjectRecord_DPM_PRO{
 
     public $id;                             // The ID of the Object
     public $status=self::STATUS_ACTIVE;     // Status flag whether the object is active or inactive
@@ -211,7 +211,7 @@ class DimbalStandardObjectRecord_DPM_FREE{
      */
     public static function getTableName(){
         global $wpdb;
-        $name = $wpdb->prefix . DIMBAL_CONST_DPM_FREE_SLUG . '-' . static::TABLE_NAME;
+        $name = $wpdb->prefix . DIMBAL_CONST_DPM_PRO_SLUG . '-' . static::TABLE_NAME;
         $name = str_replace("-","_",$name);
         return $name;
     }
@@ -242,7 +242,7 @@ class DimbalStandardObjectRecord_DPM_FREE{
             $paramString .= ' '.$key.'="'.$value.'"';
         }
 
-        $html = '['.DIMBAL_CONST_DPM_FREE_SLUG.$paramString.']';
+        $html = '['.DIMBAL_CONST_DPM_PRO_SLUG.$paramString.']';
         return $html;
     }
 
@@ -272,8 +272,8 @@ class DimbalStandardObjectRecord_DPM_FREE{
      */
     public static function getFormattedStatusImage($status, $width='32px'){
         $statusCollection = array(
-            self::STATUS_ACTIVE=>'<img src="'.DIMBAL_CONST_DPM_FREE_URL_IMAGES.'/accept.png" style="width:'.$width.';" title="Active" />',
-            self::STATUS_INACTIVE=>'<img src="'.DIMBAL_CONST_DPM_FREE_URL_IMAGES.'/cancel.png" style="width:'.$width.';" title="Inactive" />',
+            self::STATUS_ACTIVE=>'<img src="'.DIMBAL_CONST_DPM_PRO_URL_IMAGES.'/accept.png" style="width:'.$width.';" title="Active" />',
+            self::STATUS_INACTIVE=>'<img src="'.DIMBAL_CONST_DPM_PRO_URL_IMAGES.'/cancel.png" style="width:'.$width.';" title="Inactive" />',
         );
         if(array_key_exists($status, $statusCollection)){
             return $statusCollection[$status];
@@ -452,7 +452,7 @@ class DimbalStandardObjectRecord_DPM_FREE{
         $msg = '';
         $msg .= '
 			<div id="confirmationDeleteDialog" class="pBox3" style="">
-				<img src="'.DIMBAL_CONST_DPM_FREE_URL_IMAGES.'/error.png" style="float:left; width:50px; padding-right:25px;" />
+				<img src="'.DIMBAL_CONST_DPM_PRO_URL_IMAGES.'/error.png" style="float:left; width:50px; padding-right:25px;" />
 
 					<p>Please confirm that you would like to delete the following entry.  This action cannot be undone.</p>
 					<div>Type: '.$type.' (ID: '.$this->id.')</div>

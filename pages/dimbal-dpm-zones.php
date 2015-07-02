@@ -8,23 +8,29 @@
  */
 
 // Build the Header
-echo Dimbal_DPM_FREE::buildHeader(array(
+echo Dimbal_DPM_PRO::buildHeader(array(
     'title'=>'Zone Manager',
-    'icon'=>DIMBAL_CONST_DPM_FREE_URL_IMAGES.'/bricks.png',
+    'icon'=>DIMBAL_CONST_DPM_PRO_URL_IMAGES.'/bricks.png',
     'description'=>'Use this manager to build and maintain custom zones for your polls.',
+    'buttons'=>array(
+        0=>array('text'=>'Create New Zone','params'=>array('page'=>Dimbal_DPM_PRO::buildPageSlug(DimbalPollManager_DPM_PRO::PAGE_ZONES), 'id'=>'new')),
+        1=>array('text'=>'View All','params'=>array('page'=>Dimbal_DPM_PRO::buildPageSlug(DimbalPollManager_DPM_PRO::PAGE_ZONES))),
+    )
 ));
 
-// Make sure that at least one zone currently exists
-$zoneId = DimbalZoneManager_DPM_FREE::validateFreeZone(DimbalZone_DPM_FREE::TYPE_DPM);
-
-$buttonHtml = Dimbal_DPM_FREE::buildButton(array('text'=>'Upgrade to Pro','url'=>'http://www.dimbal.com'));
-
-?>
-<h3>Upgrade to the Pro version for unlimited Zones.  In the free version only 1 zone is supported. <?=($buttonHtml)?></h3>
-<?php
+// Check for a delete request
+echo DimbalZone_DPM_PRO::checkForDelete(array());
 
 ///////////////////////  Editor DISPLAY  ///////////////////////////
-echo DimbalEditor_DPM_FREE::buildPageTemplate(Dimbal_DPM_FREE::buildAppClassName('DimbalZone'),'Zone Editor', true);
+echo DimbalEditor_DPM_PRO::buildPageTemplate(Dimbal_DPM_PRO::buildAppClassName('DimbalZone'),'Zone Editor');
+
+// If the ID field was removed or is not present that means we want the Manager
+$id = Dimbal_DPM_PRO::getRequestVarIfExists('id');
+if(empty($id)){
+    ///////////////////////  MANAGER DISPLAY  ///////////////////////////
+    $rows = DimbalZone_DPM_PRO::managerBuildOptions(DimbalZone_DPM_PRO::getAllByTypeId(DimbalZone_DPM_PRO::TYPE_DPM));
+    echo DimbalManager_DPM_PRO::buildManagerTable($rows);
+}
 
 // Close the wrapper
-echo Dimbal_DPM_FREE::buildFooter();
+echo Dimbal_DPM_PRO::buildFooter();

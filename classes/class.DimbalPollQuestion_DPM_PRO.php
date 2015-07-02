@@ -6,7 +6,7 @@
  * Time: 11:26 PM
  * To change this template use File | Settings | File Templates.
  */
-class DimbalPollQuestion_DPM_FREE extends DimbalStandardObjectRecord_DPM_FREE{
+class DimbalPollQuestion_DPM_PRO extends DimbalStandardObjectRecord_DPM_PRO{
 
     public $text = '';
     public $choices = array();
@@ -101,7 +101,7 @@ class DimbalPollQuestion_DPM_FREE extends DimbalStandardObjectRecord_DPM_FREE{
         // Setup the variables
         global $wpdb;
         $pollTableName = self::getTableName();
-        $zoneItemTableName = DimbalZoneItem_DPM_FREE::getTableName();
+        $zoneItemTableName = DimbalZoneItem_DPM_PRO::getTableName();
 
         // Query the Data
         $sql = $wpdb->prepare(
@@ -131,8 +131,8 @@ class DimbalPollQuestion_DPM_FREE extends DimbalStandardObjectRecord_DPM_FREE{
 
     public static function editorBuildOptions($object){
 
-        $zones = DimbalZone_DPM_FREE::getAllByTypeId(DimbalZone_DPM_FREE::TYPE_DPM);
-        $zonesArray = DimbalZone_DPM_FREE::getBasicArrayFromObjects($zones);
+        $zones = DimbalZone_DPM_PRO::getAllByTypeId(DimbalZone_DPM_PRO::TYPE_DPM);
+        $zonesArray = DimbalZone_DPM_PRO::getBasicArrayFromObjects($zones);
 
         $options=array();
         $options[]=array(
@@ -141,35 +141,35 @@ class DimbalPollQuestion_DPM_FREE extends DimbalStandardObjectRecord_DPM_FREE{
         );
         $options[]=array(
             'title'=>'ID',
-            'objectType'=>DimbalEditor_DPM_FREE::OT_NUMERIC,
+            'objectType'=>DimbalEditor_DPM_PRO::OT_NUMERIC,
             'objectName'=>'id',
-            'formType'=>DimbalEditor_DPM_FREE::ET_TEXT_READONLY,
+            'formType'=>DimbalEditor_DPM_PRO::ET_TEXT_READONLY,
             'value'=>($object)?$object->id:'',
             'help'=>''
         );
         $options[]=array(
             'title'=>'Question Text',
-            'objectType'=>DimbalEditor_DPM_FREE::OT_STRING,
+            'objectType'=>DimbalEditor_DPM_PRO::OT_STRING,
             'objectName'=>'text',
-            'formType'=>DimbalEditor_DPM_FREE::ET_TEXT,
+            'formType'=>DimbalEditor_DPM_PRO::ET_TEXT,
             'value'=>($object)?$object->text:'',
             'help'=>'The Question displayed for the Poll',
             'size'=>100,
         );
         $options[]=array(
             'title'=>'Status',
-            'objectType'=>DimbalEditor_DPM_FREE::OT_NUMERIC,
+            'objectType'=>DimbalEditor_DPM_PRO::OT_NUMERIC,
             'objectName'=>'status',
-            'formType'=>DimbalEditor_DPM_FREE::ET_MENU_STATUS,
-            'formOptions'=>DimbalStandardObjectRecord_DPM_FREE::getAllStatusMarks(),
-            'value'=>($object)?$object->status:DimbalStandardObjectRecord_DPM_FREE::STATUS_ACTIVE,
+            'formType'=>DimbalEditor_DPM_PRO::ET_MENU_STATUS,
+            'formOptions'=>DimbalStandardObjectRecord_DPM_PRO::getAllStatusMarks(),
+            'value'=>($object)?$object->status:DimbalStandardObjectRecord_DPM_PRO::STATUS_ACTIVE,
             'help'=>'Select whether this Poll is active or inactive'
         );
         $options[]=array(
             'title'=>'Answer Choices',
-            'objectType'=>DimbalEditor_DPM_FREE::OT_ARRAY,
+            'objectType'=>DimbalEditor_DPM_PRO::OT_ARRAY,
             'objectName'=>'choices',
-            'formType'=>DimbalEditor_DPM_FREE::ET_DPM_ANSWER_CHOICE_PICKER,
+            'formType'=>DimbalEditor_DPM_PRO::ET_DPM_ANSWER_CHOICE_PICKER,
             'formOptions'=>($object)?$object->getAllAnswerChoices(false):array(),
             'help'=>'Enter the Poll choices for users to vote for. Place a Checkmark next to choices you want to be active.'
         );
@@ -179,11 +179,11 @@ class DimbalPollQuestion_DPM_FREE extends DimbalStandardObjectRecord_DPM_FREE{
         );
         $options[]=array(
             'title'=>'Assigned Zones',
-            'objectType'=>DimbalEditor_DPM_FREE::OT_ARRAY,
+            'objectType'=>DimbalEditor_DPM_PRO::OT_ARRAY,
             'objectName'=>'zones',
             'formOptions'=>$zonesArray,
-            'formType'=>DimbalEditor_DPM_FREE::ET_ITEM_ZONE_PICKER,
-            'value'=>($object)?DimbalZone_DPM_FREE::getZonesForItem($object->id):'',
+            'formType'=>DimbalEditor_DPM_PRO::ET_ITEM_ZONE_PICKER,
+            'value'=>($object)?DimbalZone_DPM_PRO::getZonesForItem($object->id):'',
             'help'=>'Select the Zones that this Poll should be included in.'
         );
         if($object){
@@ -193,9 +193,9 @@ class DimbalPollQuestion_DPM_FREE extends DimbalStandardObjectRecord_DPM_FREE{
             );
             $options[]=array(
                 'title'=>'Shortcode',
-                'objectType'=>DimbalEditor_DPM_FREE::OT_SKIP,
+                'objectType'=>DimbalEditor_DPM_PRO::OT_SKIP,
                 'objectName'=>'skip',
-                'formType'=>DimbalEditor_DPM_FREE::ET_TEXT_READONLY,
+                'formType'=>DimbalEditor_DPM_PRO::ET_TEXT_READONLY,
                 'value'=>$object->getShortcode(),
                 'help'=>'Include this shortcode in your pages and posts to display this poll'
             );
@@ -207,43 +207,43 @@ class DimbalPollQuestion_DPM_FREE extends DimbalStandardObjectRecord_DPM_FREE{
         );
         $options[]=array(
             'title'=>'Created Date',
-            'objectType'=>DimbalEditor_DPM_FREE::OT_DATE,
+            'objectType'=>DimbalEditor_DPM_PRO::OT_DATE,
             'objectName'=>'createdDate',
-            'formType'=>DimbalEditor_DPM_FREE::ET_TEXT_READONLY,
-            'value'=>($object)?DimbalStandardObjectRecord_DPM_FREE::formatDate($object->createdDate):'',
+            'formType'=>DimbalEditor_DPM_PRO::ET_TEXT_READONLY,
+            'value'=>($object)?DimbalStandardObjectRecord_DPM_PRO::formatDate($object->createdDate):'',
             'help'=>'The date the Zone was created on'
         );
         $options[]=array(
             'title'=>'Last Hit Date',
-            'objectType'=>DimbalEditor_DPM_FREE::OT_DATE,
+            'objectType'=>DimbalEditor_DPM_PRO::OT_DATE,
             'objectName'=>'lastHitDate',
-            'formType'=>DimbalEditor_DPM_FREE::ET_TEXT_READONLY,
-            'value'=>($object)?DimbalStandardObjectRecord_DPM_FREE::formatDate($object->lastHitDate,"M j, Y, g:i a"):'',
+            'formType'=>DimbalEditor_DPM_PRO::ET_TEXT_READONLY,
+            'value'=>($object)?DimbalStandardObjectRecord_DPM_PRO::formatDate($object->lastHitDate,"M j, Y, g:i a"):'',
             'help'=>'The date the poll was last accessed.'
         );
         $options[]=array(
             'title'=>'Current Hit Count',
-            'objectType'=>DimbalEditor_DPM_FREE::OT_NUMERIC,
+            'objectType'=>DimbalEditor_DPM_PRO::OT_NUMERIC,
             'objectName'=>'hitCount',
-            'formType'=>DimbalEditor_DPM_FREE::ET_TEXT,
+            'formType'=>DimbalEditor_DPM_PRO::ET_TEXT,
             'value'=>($object)?$object->hitCount:'',
             'help'=>'The current number of hits (displays) the Poll has received',
             'size'=>10,
         );
         $options[]=array(
             'title'=>'Current Response Count',
-            'objectType'=>DimbalEditor_DPM_FREE::OT_NUMERIC,
+            'objectType'=>DimbalEditor_DPM_PRO::OT_NUMERIC,
             'objectName'=>'responseCount',
-            'formType'=>DimbalEditor_DPM_FREE::ET_TEXT_READONLY,
+            'formType'=>DimbalEditor_DPM_PRO::ET_TEXT_READONLY,
             'value'=>($object)?$object->responseCount:'',
             'help'=>'The current number of responses the Poll has received.'
         );
         /*
         $options[]=array(
             'title'=>'Clear All Responses',
-            'objectType'=>DimbalEditor_DPM_FREE::OT_SKIP,
+            'objectType'=>DimbalEditor_DPM_PRO::OT_SKIP,
             'objectName'=>'responseCount',
-            'formType'=>DimbalEditor_DPM_FREE::ET_HTML,
+            'formType'=>DimbalEditor_DPM_PRO::ET_HTML,
             'value'=>($object)?'':'',
             'help'=>'Click this button to reset the saved responses on this Poll.  THIS ACTION CANNOT BE UNDONE.'
         );
@@ -254,82 +254,82 @@ class DimbalPollQuestion_DPM_FREE extends DimbalStandardObjectRecord_DPM_FREE{
         );
         $options[]=array(
             'title'=>'Allow Multiple Responses',
-            'objectType'=>DimbalEditor_DPM_FREE::OT_BOOLEAN,
+            'objectType'=>DimbalEditor_DPM_PRO::OT_BOOLEAN,
             'objectName'=>'multipleResponses',
-            'formType'=>DimbalEditor_DPM_FREE::ET_CHECKBOX,
-            'value'=>($object)?$object->multipleResponses:DimbalSetting_DPM_FREE::getSetting('dpm_default_allow_multiple_responses'),
+            'formType'=>DimbalEditor_DPM_PRO::ET_CHECKBOX,
+            'value'=>($object)?$object->multipleResponses:DimbalSetting_DPM_PRO::getSetting('dpm_default_allow_multiple_responses'),
             'help'=>'Check to allow multiple responses from the same user. (based upon saved cookies)'
         );
         $options[]=array(
             'title'=>'Set Maximum Responses',
-            'objectType'=>DimbalEditor_DPM_FREE::OT_NUMERIC,
+            'objectType'=>DimbalEditor_DPM_PRO::OT_NUMERIC,
             'objectName'=>'maxResponses',
-            'formType'=>DimbalEditor_DPM_FREE::ET_TEXT,
-            'value'=>($object)?$object->maxResponses:DimbalSetting_DPM_FREE::getSetting('dpm_default_max_responses'),
+            'formType'=>DimbalEditor_DPM_PRO::ET_TEXT,
+            'value'=>($object)?$object->maxResponses:DimbalSetting_DPM_PRO::getSetting('dpm_default_max_responses'),
             'help'=>'Close the Poll once the maximum number of responses have been recorded. Use 0 for unlimited.',
             'size'=>10,
         );
         $options[]=array(
             'title'=>'Enforce Start and End Dates',
-            'objectType'=>DimbalEditor_DPM_FREE::OT_BOOLEAN,
+            'objectType'=>DimbalEditor_DPM_PRO::OT_BOOLEAN,
             'objectName'=>'enforceStartEndDates',
-            'formType'=>DimbalEditor_DPM_FREE::ET_CHECKBOX,
+            'formType'=>DimbalEditor_DPM_PRO::ET_CHECKBOX,
             'value'=>($object)?$object->enforceStartEndDates:'',
             'help'=>'Check to make this poll active only within the Start and End Dates specified below.'
         );
         $options[]=array(
             'title'=>'Start Date',
-            'objectType'=>DimbalEditor_DPM_FREE::OT_DATE,
+            'objectType'=>DimbalEditor_DPM_PRO::OT_DATE,
             'objectName'=>'startDate',
-            'formType'=>DimbalEditor_DPM_FREE::ET_DATE,
+            'formType'=>DimbalEditor_DPM_PRO::ET_DATE,
             'value'=>($object)?$object->startDate:'',
             'help'=>'You can optionally keep a Poll closed until a designated Start Date.  You must check the Enforce option above to turn this on.'
         );
         $options[]=array(
             'title'=>'End Date',
-            'objectType'=>DimbalEditor_DPM_FREE::OT_DATE,
+            'objectType'=>DimbalEditor_DPM_PRO::OT_DATE,
             'objectName'=>'endDate',
-            'formType'=>DimbalEditor_DPM_FREE::ET_DATE,
+            'formType'=>DimbalEditor_DPM_PRO::ET_DATE,
             'value'=>($object)?$object->endDate:'',
             'help'=>'You can optionally close a Poll after a designated End Date.   You must check the Enforce option above to turn this on.'
         );
         $options[]=array(
             'title'=>'View Results',
-            'objectType'=>DimbalEditor_DPM_FREE::OT_BOOLEAN,
+            'objectType'=>DimbalEditor_DPM_PRO::OT_BOOLEAN,
             'objectName'=>'viewResults',
-            'formType'=>DimbalEditor_DPM_FREE::ET_CHECKBOX,
-            'value'=>($object)?$object->viewResults:DimbalSetting_DPM_FREE::getSetting('dpm_default_view_results'),
+            'formType'=>DimbalEditor_DPM_PRO::ET_CHECKBOX,
+            'value'=>($object)?$object->viewResults:DimbalSetting_DPM_PRO::getSetting('dpm_default_view_results'),
             'help'=>'Allow users to see the results of the poll after voting.'
         );
         $options[]=array(
             'title'=>'View Results BEFORE Voting',
-            'objectType'=>DimbalEditor_DPM_FREE::OT_BOOLEAN,
+            'objectType'=>DimbalEditor_DPM_PRO::OT_BOOLEAN,
             'objectName'=>'viewEarlyResults',
-            'formType'=>DimbalEditor_DPM_FREE::ET_CHECKBOX,
-            'value'=>($object)?$object->viewEarlyResults:DimbalSetting_DPM_FREE::getSetting('dpm_default_view_results_before_voting'),
+            'formType'=>DimbalEditor_DPM_PRO::ET_CHECKBOX,
+            'value'=>($object)?$object->viewEarlyResults:DimbalSetting_DPM_PRO::getSetting('dpm_default_view_results_before_voting'),
             'help'=>'Allow users to see the results of the poll before voting.'
         );
         $options[]=array(
             'title'=>'Show Legend',
-            'objectType'=>DimbalEditor_DPM_FREE::OT_BOOLEAN,
+            'objectType'=>DimbalEditor_DPM_PRO::OT_BOOLEAN,
             'objectName'=>'showLegend',
-            'formType'=>DimbalEditor_DPM_FREE::ET_CHECKBOX,
-            'value'=>($object)?$object->showLegend:DimbalSetting_DPM_FREE::getSetting('dpm_default_show_legend'),
+            'formType'=>DimbalEditor_DPM_PRO::ET_CHECKBOX,
+            'value'=>($object)?$object->showLegend:DimbalSetting_DPM_PRO::getSetting('dpm_default_show_legend'),
             'help'=>'If checked, will display a legend for the answer choices when the poll is displayed.'
         );
         $options[]=array(
             'title'=>'Use 3D Chart',
-            'objectType'=>DimbalEditor_DPM_FREE::OT_BOOLEAN,
+            'objectType'=>DimbalEditor_DPM_PRO::OT_BOOLEAN,
             'objectName'=>'is3d',
-            'formType'=>DimbalEditor_DPM_FREE::ET_CHECKBOX,
-            'value'=>($object)?$object->is3d:DimbalSetting_DPM_FREE::getSetting('dpm_default_use_3d_charts'),
+            'formType'=>DimbalEditor_DPM_PRO::ET_CHECKBOX,
+            'value'=>($object)?$object->is3d:DimbalSetting_DPM_PRO::getSetting('dpm_default_use_3d_charts'),
             'help'=>'If checked, will display the chart as a 3D chart.'
         );
         $options[]=array(
             'title'=>'Additional HTML',
-            'objectType'=>DimbalEditor_DPM_FREE::OT_STRING,
+            'objectType'=>DimbalEditor_DPM_PRO::OT_STRING,
             'objectName'=>'additionalHtml',
-            'formType'=>DimbalEditor_DPM_FREE::ET_TEXTAREA,
+            'formType'=>DimbalEditor_DPM_PRO::ET_TEXTAREA,
             'size'=>100,
             'value'=>($object)?$object->additionalHtml:'',
             'help'=>'You can optionally include any custom html underneath the Poll.'
@@ -340,7 +340,7 @@ class DimbalPollQuestion_DPM_FREE extends DimbalStandardObjectRecord_DPM_FREE{
     public static function managerBuildOptions($objects){
         $rows = array();
         foreach($objects as $object){
-            //$responses = DimbalPollResponse_DPM_FREE::getAllByPollId($object->id);
+            //$responses = DimbalPollResponse_DPM_PRO::getAllByPollId($object->id);
             $responses=array();
             //Logger::debug("items: ID (".$object->id.") ".print_r($object->choices,true));
             $row = array();
@@ -354,8 +354,8 @@ class DimbalPollQuestion_DPM_FREE extends DimbalStandardObjectRecord_DPM_FREE{
             );
             $row[] = array(
                 'title'=>'Edit',
-                'url'=>Dimbal_DPM_FREE::getPageUrl(DimbalPollManager_DPM_FREE::PAGE_POLLS, array('id'=>$object->id)),
-                'image'=>DIMBAL_CONST_DPM_FREE_URL_IMAGES.'/page_edit.png',
+                'url'=>Dimbal_DPM_PRO::getPageUrl(DimbalPollManager_DPM_PRO::PAGE_POLLS, array('id'=>$object->id)),
+                'image'=>DIMBAL_CONST_DPM_PRO_URL_IMAGES.'/page_edit.png',
                 'image_tooltip'=>'Edit Poll',
             );
             $row[] = array(
@@ -370,20 +370,24 @@ class DimbalPollQuestion_DPM_FREE extends DimbalStandardObjectRecord_DPM_FREE{
             $row[] = array(
                 'title'=>'Report',
                 'url'=>'reports.php?pollId='.$object->id,
-                'image'=>DIMBAL_CONST_DPM_FREE_URL_IMAGES.'/document_layout.png',
+                'image'=>DIMBAL_CONST_DPM_PRO_URL_IMAGES.'/document_layout.png',
                 'image_tooltip'=>'Build Report',
             );
             */
+
+            /*
             $row[] = array(
                 'title'=>'Preview',
                 'url'=>$object->getPreviewUrl(),
                 //'target'=>'_blank',
-                'image'=>DIMBAL_CONST_DPM_FREE_URL_IMAGES.'/magnifier.png',
+                'image'=>DIMBAL_CONST_DPM_PRO_URL_IMAGES.'/magnifier.png',
                 'image_tooltip'=>'Preview Poll',
             );
+            */
+
             $row[] = array(
                 'title'=>'Created Date',
-                'content'=>DimbalStandardObjectRecord_DPM_FREE::formatDate($object->createdDate),
+                'content'=>DimbalStandardObjectRecord_DPM_PRO::formatDate($object->createdDate),
             );
 
             $row[] = array(
@@ -393,25 +397,25 @@ class DimbalPollQuestion_DPM_FREE extends DimbalStandardObjectRecord_DPM_FREE{
 
             if($object->multipleResponses){
                 $row[] = array(
-                    'title'=>'<img src="'.DIMBAL_CONST_DPM_FREE_URL_IMAGES.'/comments_add.png" title="Users can submit multiple answers" />',
-                    'image'=>DIMBAL_CONST_DPM_FREE_URL_IMAGES.'/comments_add.png',
+                    'title'=>'<img src="'.DIMBAL_CONST_DPM_PRO_URL_IMAGES.'/comments_add.png" title="Users can submit multiple answers" />',
+                    'image'=>DIMBAL_CONST_DPM_PRO_URL_IMAGES.'/comments_add.png',
                     'image_tooltip'=>'Multiple Responses Allowed',
                 );
             }else{
                 $row[] = array(
-                    'title'=>'<img src="'.DIMBAL_CONST_DPM_FREE_URL_IMAGES.'/comments_add.png" title="Users can submit multiple answers" />',
+                    'title'=>'<img src="'.DIMBAL_CONST_DPM_PRO_URL_IMAGES.'/comments_add.png" title="Users can submit multiple answers" />',
                     'content'=>''
                 );
             }
             if($object->viewResults){
                 $row[] = array(
-                    'title'=>'<img src="'.DIMBAL_CONST_DPM_FREE_URL_IMAGES.'/google_custom_search.png" title="Users can view poll results" />',
-                    'image'=>DIMBAL_CONST_DPM_FREE_URL_IMAGES.'/google_custom_search.png',
+                    'title'=>'<img src="'.DIMBAL_CONST_DPM_PRO_URL_IMAGES.'/google_custom_search.png" title="Users can view poll results" />',
+                    'image'=>DIMBAL_CONST_DPM_PRO_URL_IMAGES.'/google_custom_search.png',
                     'image_tooltip'=>'Users can view polls results',
                 );
             }else{
                 $row[] = array(
-                    'title'=>'<img src="'.DIMBAL_CONST_DPM_FREE_URL_IMAGES.'/google_custom_search.png" title="Users can view poll results" />',
+                    'title'=>'<img src="'.DIMBAL_CONST_DPM_PRO_URL_IMAGES.'/google_custom_search.png" title="Users can view poll results" />',
                     'content'=>''
                 );
             }
@@ -426,8 +430,8 @@ class DimbalPollQuestion_DPM_FREE extends DimbalStandardObjectRecord_DPM_FREE{
 
             $row[] = array(
                 'title'=>'Delete',
-                'url'=>Dimbal_DPM_FREE::getPageUrl(DimbalPollManager_DPM_FREE::PAGE_POLLS, array('delete'=>1,'id'=>$object->id)),
-                'image'=>DIMBAL_CONST_DPM_FREE_URL_IMAGES.'/delete.png',
+                'url'=>Dimbal_DPM_PRO::getPageUrl(DimbalPollManager_DPM_PRO::PAGE_POLLS, array('delete'=>1,'id'=>$object->id)),
+                'image'=>DIMBAL_CONST_DPM_PRO_URL_IMAGES.'/delete.png',
                 'image_tooltip'=>'Delete Poll',
             );
             $rows[]=$row;
@@ -440,13 +444,13 @@ class DimbalPollQuestion_DPM_FREE extends DimbalStandardObjectRecord_DPM_FREE{
     }
 
     public function getPreviewUrl(){
-        return Dimbal_DPM_FREE::getPageUrl(DimbalPollManager_DPM_FREE::PAGE_PREVIEW, array('ac'=>'1','pollId'=>$this->id));
+        return Dimbal_DPM_PRO::getPageUrl(DimbalPollManager_DPM_PRO::PAGE_PREVIEW, array('ac'=>'1','pollId'=>$this->id));
     }
 
     public function getDisplayCode($options=array()){
 
         $html = '';
-        $html .= '<div class="DIMBAL_CONST_DPM_FREE_SLUG-WidgetWrapper" dpm_poll="'.$this->id.'">';
+        $html .= '<div class="DIMBAL_CONST_DPM_PRO_SLUG-WidgetWrapper" dpm_poll="'.$this->id.'">';
         //$html .= '<a href="http://www.dimbal.com">Loading the Dimbal Poll Manager</a>';
         $html .= '</div>';
         return $html;
@@ -469,7 +473,7 @@ class DimbalPollQuestion_DPM_FREE extends DimbalStandardObjectRecord_DPM_FREE{
         if(isset($this->maxResponsesReached) && $this->maxResponsesReached){
             //Fail silently
             $this->ignoredResponses++;
-            Dimbal_DPM_FREE::logMessage("Response ID passed for a poll that has reached max responses: Poll (".$this->id.") Response(".$responseId.")");
+            Dimbal_DPM_PRO::logMessage("Response ID passed for a poll that has reached max responses: Poll (".$this->id.") Response(".$responseId.")");
             return false;
         }
 
@@ -477,7 +481,7 @@ class DimbalPollQuestion_DPM_FREE extends DimbalStandardObjectRecord_DPM_FREE{
         if($this->status!=self::STATUS_ACTIVE){
             //The poll is something other then active... ignore the response
             $this->ignoredResponses++;
-            Dimbal_DPM_FREE::logMessage("Response ID passed for a poll that is not currently active: Poll (".$this->id.") Status (".$this->status.") Response(".$responseId.")");
+            Dimbal_DPM_PRO::logMessage("Response ID passed for a poll that is not currently active: Poll (".$this->id.") Status (".$this->status.") Response(".$responseId.")");
             return false;
         }
 
@@ -487,8 +491,8 @@ class DimbalPollQuestion_DPM_FREE extends DimbalStandardObjectRecord_DPM_FREE{
         }
 
         //We are able to record this response... proceed
-        Dimbal_DPM_FREE::logMessage("Creating Response Record");
-        $pollResponse = new DimbalPollResponse_DPM_FREE($this->id,$responseId,$responseDate);
+        Dimbal_DPM_PRO::logMessage("Creating Response Record");
+        $pollResponse = new DimbalPollResponse_DPM_PRO($this->id,$responseId,$responseDate);
 
         //Update the poll counter
         $this->responseCount++;
@@ -509,7 +513,7 @@ class DimbalPollQuestion_DPM_FREE extends DimbalStandardObjectRecord_DPM_FREE{
     }
 
     public static function buildCookieString($pollId){
-        return DIMBAL_CONST_DPM_FREE_SLUG."_pr_".$pollId;
+        return DIMBAL_CONST_DPM_PRO_SLUG."_pr_".$pollId;
     }
 
     public function hasAlreadyResponded(){
@@ -533,7 +537,7 @@ class DimbalPollQuestion_DPM_FREE extends DimbalStandardObjectRecord_DPM_FREE{
                 if(strlen(trim($text))>0){
                     $id = $this->choiceIdCounter + 1;
                     $this->choiceIdCounter = $id;
-                    $choice = new DimbalPollAnswerChoice_DPM_FREE($id, $text, $status);
+                    $choice = new DimbalPollAnswerChoice_DPM_PRO($id, $text, $status);
                     $this->choices[$choice->id]=$choice;
                     $this->save();
                 }
@@ -548,7 +552,7 @@ class DimbalPollQuestion_DPM_FREE extends DimbalStandardObjectRecord_DPM_FREE{
         foreach($choices as $text){
             $id = $this->choiceIdCounter + 1;
             $this->choiceIdCounter = $id;
-            $choice = new DimbalPollAnswerChoice_DPM_FREE($id, $text, self::STATUS_ACTIVE);
+            $choice = new DimbalPollAnswerChoice_DPM_PRO($id, $text, self::STATUS_ACTIVE);
             $this->choices[$choice->id]=$choice;
         }
     }
@@ -576,19 +580,19 @@ class DimbalPollQuestion_DPM_FREE extends DimbalStandardObjectRecord_DPM_FREE{
             $this->save();
         }
         //Now remove all responses that are using that option (and decrement the hit count)
-        DimbalPollResponse_DPM_FREE::deleteByPollIdAndChoiceId($this->id, $id);
+        DimbalPollResponse_DPM_PRO::deleteByPollIdAndChoiceId($this->id, $id);
     }
 
     public function getAllAnswerChoices($simpleArray=true){
         $choices = array();
         foreach($this->choices as $choice){
-            if($choice instanceof DimbalPollAnswerChoice){
+            //if($choice instanceof DimbalPollAnswerChoice){
                 if($simpleArray){
                     $choices[$choice->id]=$choice->text;
                 }else{
                     $choices[$choice->id]=$choice;
                 }
-            }
+            //}
         }
         //Logger::debug("ANSWER CHOICES: ".print_r($choices,true));
         return $choices;
@@ -609,7 +613,7 @@ class DimbalPollQuestion_DPM_FREE extends DimbalStandardObjectRecord_DPM_FREE{
     }
 
     public function getResponsesCounts(){
-        $responses = DimbalPollResponse_DPM_FREE::getAllByPollId($this->id);
+        $responses = DimbalPollResponse_DPM_PRO::getAllByPollId($this->id);
         //Format the rests array for bar graph display
         $results = array();
         foreach($this->choices as $key=>$value){
@@ -627,7 +631,7 @@ class DimbalPollQuestion_DPM_FREE extends DimbalStandardObjectRecord_DPM_FREE{
     }
 
     public function getResponsesDates(){
-        $responses = DimbalPollResponse_DPM_FREE::getAllByPollId($this->id);
+        $responses = DimbalPollResponse_DPM_PRO::getAllByPollId($this->id);
 
         $results = array();
         foreach($responses as $response){
@@ -643,7 +647,7 @@ error_log("Date: ".$date);
     }
 
     public function getResponsesDatesByDate(){
-        $responses = DimbalPollResponse_DPM_FREE::getAllByPollId($this->id);
+        $responses = DimbalPollResponse_DPM_PRO::getAllByPollId($this->id);
 
         $results = array();
         foreach($responses as $response){
@@ -681,7 +685,7 @@ error_log("Date: ".$date);
     }
 
     public function additionalDeleteSteps(){
-        DimbalPollResponse_DPM_FREE::deleteByPollId($this->id);
+        DimbalPollResponse_DPM_PRO::deleteByPollId($this->id);
     }
 
 }
