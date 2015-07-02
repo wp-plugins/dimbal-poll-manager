@@ -4,7 +4,7 @@ Donate link: http://www.dimbal.com/
 Tags: polls
 Requires at least: 3.0.1
 Tested up to: 4.2
-Stable tag: 1.0.6
+Stable tag: 1.1.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -25,6 +25,16 @@ Feature Rich: The Dimbal Poll Manager is a Poll Software solution that comes ful
 3. Activate the plugin through the 'Plugins' menu in WordPress
 4. Access the Dimbal Poll Manager through the Admin menu on the left of WordPress.  Widgets and short codes are also available.
 
+== Screenshots ==
+
+1. The Dimbal Poll Manager is a powerful Poll Management plugin allowing you to create and maintain user interest polls for your blog or website. Easily integrate polls directly into your blog using the provided shortcodes or widgets.
+2. The Poll Manager screen provides an overview of all the polls stored within your system.  You can see a quick view of stats for each poll as well as get access to a Short Code to include the poll on any post.
+3. The Poll Editor screen allows you to edit the settings for an individual poll.  Each poll comes with a wide list of options to control and dictate how that poll is to be shown.  This includes options such as maximum responses, viewing results without responding, using 3d charts, a start and end date and many other features.
+4. The Zone Manager screen allows you to create logical groups for your polls.  You can then choose to display the group code on your website and a poll is automatically choosen from the group for display.
+5. The Zone Editor screen allows you to edit the settings for an individual zone or group.  Settings such as which polls should be included, extra html to display along with the zone, showing a zone title and many others.
+6. The Reporting screen allows you to build custom reports for each poll or zone within the framework.  The Dimbal Poll Manager has powerful analytics built into it's core to allow you analyze a poll or zones performance and gain valuable insights.
+7. The Settings screen allows you to change how certain things work within the framework.  You can set defaults for new polls as well as control how global functionality works.
+
 == Frequently Asked Questions ==
 
 = How much does this plugin cost? =
@@ -35,25 +45,21 @@ The plugin is 100% free.  Knock yourself out.
 
 Visit http://www.dimbal.com for any and all support inquiries.
 
+= How many polls can I make? =
+
+There is no limit.  You can create as many polls as you want in the system
+
+= What are Zones? =
+
+Zones are a grouping mechanism.  They allow you to create groups from your polls.  When a zone is included in your site a random poll from that zone will be displayed.
+
+= I have an awesome feature addition idea - where should I submit it? =
+
+Great! We would love to hear it.  Stop on by our website at http://www.dimbal.com to share the idea.
 
 == Changelog ==
 
-= 1.0.6 =
-* Bug Fixes
-
-= 1.0.5 =
-* Bug Fixes with Widget
-
-= 1.0.4 =
-* Bug Fixes
-
-= 1.0.3 =
-* Bug Fixes
-
-= 1.0.2 =
-* Bug Fixes
-
-= 1.0.1 =
+= 1.1.0 =
 * Bug Fixes
 
 = 1.0.0 =
