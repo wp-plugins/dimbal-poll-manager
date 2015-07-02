@@ -20,7 +20,6 @@ var dimbalPoll_DPM_PRO = {
 
     initialized:false,
     slug:"DIMBAL_CONST_DPM_PRO_SLUG",
-    page:"DIMBAL_CONST_DPM_PRO_PAGE_PREFIX",
     url_root:"",
     url_ajax:"",
     url_ajax_load:"",
@@ -60,7 +59,6 @@ var dimbalPoll_DPM_PRO = {
         console.log("SLUG: "+this.slug);
 
         // Setup the URLS
-        //this.page = dimbal_dpm_vars.page;
         this.url_root = dimbal_dpm_vars.url;
         this.url_ajax = dimbal_dpm_vars.ajax_url;
         this.url_ajax_load = this.url_root+"/images/loading2.gif";
@@ -81,8 +79,6 @@ var dimbalPoll_DPM_PRO = {
                 elementId = this.slug+"_"+i;
                 elements[i].setAttribute("id", elementId);
             }
-
-            //console.log("Page: "+dimbalPoll_DPM_PRO.page);
 
             // Setup the proper Display Ajax Action
             var queryParams = {

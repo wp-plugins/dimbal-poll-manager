@@ -13,6 +13,7 @@ define('DIMBAL_CONST_DPM_PRO_PAGE_PREFIX', 'dimbal-dpm-pro');
 define('DIMBAL_CONST_DPM_PRO_PLUGIN_TITLE', 'Dimbal Poll Manager');
 define('DIMBAL_CONST_DPM_PRO_PLUGIN_TITLE_SHORT', 'Dimbal Polls');
 define('DIMBAL_CONST_DPM_PRO_PURCHASE_LEVEL', 'pro');
+define('DIMBAL_CONST_DPM_PRO_WP_PLUGIN_HOMEPAGE', 'https://wordpress.org/plugins/dimbal-poll-manager/');
 
 // Dimbal Poll Manager Setup Steps
 include 'inc/inc.setup-dpm.php';

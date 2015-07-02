@@ -52,7 +52,7 @@ $boxesLeft[] = new DimbalBox_DPM_PRO(array(
 
 
 
-/*
+
 $boxesRight[] = new DimbalBox_DPM_PRO(array(
     'type'=>DimbalBox_DPM_PRO::TYPE_TRIM,
     'size'=>DimbalBox_DPM_PRO::SIZE_FULL,
@@ -60,10 +60,10 @@ $boxesRight[] = new DimbalBox_DPM_PRO(array(
     'content'=>'Did you like this Plugin?  Please leave positive feedback to help it grow.',
     'icon'=>DIMBAL_CONST_DPM_PRO_URL_IMAGES.'/award_star_gold_3.png',
     'buttons'=>array(
-        0=>array('url'=>'http://wordpress.org/support/view/plugin-reviews/dimbal-social-popup','text'=>'Rate this Plugin')
+        0=>array('url'=>DIMBAL_CONST_DPM_PRO_WP_PLUGIN_HOMEPAGE,'text'=>'Rate this Plugin')
     )
 ));
-*/
+
 
 $boxesRight[] = new DimbalBox_DPM_PRO(array(
     'type'=>DimbalBox_DPM_PRO::TYPE_TRIM,

@@ -387,6 +387,8 @@ class DimbalZone_DPM_PRO extends DimbalStandardObjectRecord_DPM_PRO{
                 self::TYPE_DPM,
                 self::TYPE_DTM
             );
+
+            /*
             if(in_array($object->typeId, $typesWithPreview)){
                 $row[] = array(
                     'title'=>'Preview',
@@ -395,6 +397,7 @@ class DimbalZone_DPM_PRO extends DimbalStandardObjectRecord_DPM_PRO{
                     'image_tooltip'=>'Preview Zone',
                 );
             }
+            */
             $row[] = array(
                 'title'=>'Created Date',
                 'content'=>DimbalStandardObjectRecord_DPM_PRO::formatDate($object->createdDate),

@@ -374,6 +374,8 @@ class DimbalPollQuestion_DPM_PRO extends DimbalStandardObjectRecord_DPM_PRO{
                 'image_tooltip'=>'Build Report',
             );
             */
+
+            /*
             $row[] = array(
                 'title'=>'Preview',
                 'url'=>$object->getPreviewUrl(),
@@ -381,6 +383,8 @@ class DimbalPollQuestion_DPM_PRO extends DimbalStandardObjectRecord_DPM_PRO{
                 'image'=>DIMBAL_CONST_DPM_PRO_URL_IMAGES.'/magnifier.png',
                 'image_tooltip'=>'Preview Poll',
             );
+            */
+
             $row[] = array(
                 'title'=>'Created Date',
                 'content'=>DimbalStandardObjectRecord_DPM_PRO::formatDate($object->createdDate),
